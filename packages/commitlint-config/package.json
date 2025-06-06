@@ -9,12 +9,6 @@
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
   "license": "ISC",
   "main": "index.js",
-  "directories": {
-    "test": "__tests__"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmmirror.com/"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qingFeng818/encode-spec-engine.git"
@@ -27,6 +21,5 @@
   },
   "dependencies": {
     "conventional-changelog-conventionalcommits": "^4.5.0"
-  },
-  "gitHead": "db01b6ed41a59612081799ad003504749cf18bbe"
+  }
 }
