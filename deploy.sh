@@ -2,7 +2,6 @@
 
 set -e
 
-
 push_addr=$(git remote get-url --push origin)
 commit_info=$(git describe --all --always --long)
 dist_path="docs/.vuepress/dist"
@@ -13,6 +12,8 @@ npm run docs:build
 cd "$dist_path" && git config core.filemode false 
 
 git init
+git remote add origin git@github.com:qingFeng818/encode-spec-engine.git 
+git remote -v
 git add -A
 git commit -m "deploy: $commit_info"
 
