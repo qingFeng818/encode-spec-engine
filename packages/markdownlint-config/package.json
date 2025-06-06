@@ -1,5 +1,5 @@
 {
-  "name": "encode-spec-engine-markdownlint-config",
+  "name": "encode-spec-engine-markdownlint-config1",
   "version": "0.0.9",
   "description": "markdown 规范",
   "main": "index.json",
@@ -23,5 +23,6 @@
   },
   "peerDependencies": {
     "markdownlint": "^0.28.1"
-  }
+  },
+  "gitHead": "2bb263036a81bbaf7e6974716707bb5ebc3728da"
 }
