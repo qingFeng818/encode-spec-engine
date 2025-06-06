@@ -1,6 +1,6 @@
 {
-  "name": "root",
-    "version": "0.0.4",
+  "name": "encode-spec-engine",
+  "version": "0.0.4",
   "private": false,
   "workspaces": [
     "packages/*"
