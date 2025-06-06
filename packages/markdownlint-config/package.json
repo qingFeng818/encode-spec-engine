@@ -1,6 +1,6 @@
 {
   "name": "encode-spec-engine-markdownlint-config",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "markdown 规范",
   "main": "index.json",
   "keywords": [
