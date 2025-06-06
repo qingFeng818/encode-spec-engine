@@ -1,5 +1,5 @@
 {
-  "name": "markdownlint-config",
+  "name": "encode-spec-engine-markdownlint-config",
   "version": "0.0.7",
   "description": "markdown 规范",
   "main": "index.json",
