@@ -1,4 +1,4 @@
-# `commitlint-config`
+# `commitlint-config1`
 
 > TODO: description1
 

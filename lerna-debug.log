@@ -1,9 +1,9 @@
-40 error Error: Command failed with exit code 1: git commit -m chore(release): publish v0.0.1
-40 error On branch master
-40 error Your branch is up to date with 'origin/master'.
-40 error
-40 error nothing to commit, working tree clean
-40 error     at makeError (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\lib\error.js:59:11)
-40 error     at handlePromise (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\index.js:114:26)
-40 error     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-40 error     at async Promise.all (index 0)
+45 error Error: Command failed with exit code 1: git commit -m chore(release): publish v0.0.1
+45 error On branch master
+45 error Your branch is up to date with 'origin/master'.
+45 error
+45 error nothing to commit, working tree clean
+45 error     at makeError (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\lib\error.js:59:11)
+45 error     at handlePromise (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\index.js:114:26)
+45 error     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+45 error     at async Promise.all (index 0)
