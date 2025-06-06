@@ -1,0 +1,43 @@
+34 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
+34 error npm error code ERESOLVE
+34 error npm error ERESOLVE could not resolve
+34 error npm error
+34 error npm error While resolving: root@undefined
+34 error npm error Found: typescript@5.8.3
+34 error npm error node_modules/typescript
+34 error npm error   dev typescript@"^5.0.4" from the root project
+34 error npm error   peerOptional typescript@"*" from vue@3.5.16
+34 error npm error   node_modules/vue
+34 error npm error     peer vue@"^3.2.25" from @vitejs/plugin-vue@5.2.4
+34 error npm error     node_modules/@vitejs/plugin-vue
+34 error npm error       @vitejs/plugin-vue@"^5.2.3" from @vuepress/bundler-vite@2.0.0-rc.23
+34 error npm error       node_modules/@vuepress/bundler-vite
+34 error npm error         peerOptional @vuepress/bundler-vite@"2.0.0-rc.23" from vuepress@2.0.0-rc.23
+34 error npm error         node_modules/vuepress
+34 error npm error     peer vue@"3.5.16" from @vue/server-renderer@3.5.16
+34 error npm error     node_modules/@vue/server-renderer
+34 error npm error       @vue/server-renderer@"3.5.16" from vue@3.5.16
+34 error npm error     18 more (@vuepress/bundler-vite, @vuepress/bundlerutils, ...)
+34 error npm error   1 more (ts-node)
+34 error npm error
+34 error npm error Could not resolve dependency:
+34 error npm error dev typedoc@"^0.24.7" from the root project
+34 error npm error
+34 error npm error Conflicting peer dependency: typescript@5.1.6
+34 error npm error node_modules/typescript
+34 error npm error   peer typescript@"4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x" from typedoc@0.24.8
+34 error npm error   node_modules/typedoc
+34 error npm error     dev typedoc@"^0.24.7" from the root project
+34 error npm error
+34 error npm error Fix the upstream dependency conflict, or retry
+34 error npm error this command with --force or --legacy-peer-deps
+34 error npm error to accept an incorrect (and potentially broken) dependency resolution.
+34 error npm error
+34 error npm error
+34 error npm error For a full report see:
+34 error npm error C:\Users\dduuy\AppData\Local\npm-cache\_logs\2025-06-06T06_06_50_810Z-eresolve-report.txt
+34 error npm error A complete log of this run can be found in: C:\Users\dduuy\AppData\Local\npm-cache\_logs\2025-06-06T06_06_50_810Z-debug-0.log
+34 error     at makeError (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\lib\error.js:59:11)
+34 error     at handlePromise (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\index.js:114:26)
+34 error     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+34 error     at async Promise.all (index 0)

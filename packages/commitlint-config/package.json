@@ -1,6 +1,6 @@
 {
   "name": "commitlint-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "commitlint 规范",
   "keywords": [
     "commitlint"
@@ -12,8 +12,6 @@
   "directories": {
     "test": "__tests__"
   },
-  
- 
   "publishConfig": {
     "registry": "https://registry.npmmirror.com/"
   },
@@ -27,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   },
-   "dependencies": {
+  "dependencies": {
     "conventional-changelog-conventionalcommits": "^4.5.0"
   }
 }
