@@ -1,7 +1,7 @@
 module.exports = {
   parserPreset: 'conventional-changelog-conventionalcommits',
   rules: {
-    'body-leading-blank': [1, 'never'],
+    'body-leading-blank': [1, 'always'],
     'body-max-line-length': [2, 'always', 100],
     'footer-leading-blank': [1, 'always'],
     'footer-max-line-length': [2, 'always', 100],
@@ -12,6 +12,6 @@ module.exports = {
     'subject-full-stop': [2, 'never', '.'],
     'type-case': [2, 'always', 'lower-case'],
     'type-empty': [2, 'never'],
-    'type-enum': [2, 'always', ['text', 'feat', 'fix', 'docs', 'style', 'test', 'refactor', 'chore', 'revert']],
+    'type-enum': [2, 'always', ['deploy', 'text', 'feat', 'fix', 'docs', 'style', 'test', 'refactor', 'chore', 'revert']],
   },
 };
