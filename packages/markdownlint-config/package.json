@@ -1,0 +1,34 @@
+{
+  "name": "markdownlint-config",
+  "version": "0.0.1",
+  "description": "markdown 规范",
+  "keywords": [
+    "encode",
+    "markdown",
+    "lint"
+  ],
+  "author": "qingfeng818 <dduuyyuu@qq.com>",
+  "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
+  "license": "ISC",
+  "main": "index.json",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qingFeng818/encode-spec-engine.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/markdownlint-config.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
+  },
+    "peerDependencies": {
+    "markdownlint": "^0.28.1"
+  }
+}
