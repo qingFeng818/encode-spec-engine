@@ -1,5 +1,5 @@
 {
-  "name": "encode-spec-engine-commitlint-config",
+  "name": "encode-spec-engine-commitlint-config1",
   "version": "0.0.10",
   "description": "commitlint 规范",
   "keywords": [
@@ -22,5 +22,5 @@
   "dependencies": {
     "conventional-changelog-conventionalcommits": "^4.5.0"
   },
-  "gitHead": "2bb263036a81bbaf7e6974716707bb5ebc3728da"
+  "gitHead": "ef82c8874896ede3af872c445885d3dace27bd23"
 }
