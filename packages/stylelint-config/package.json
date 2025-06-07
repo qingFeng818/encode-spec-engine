@@ -1,6 +1,6 @@
 {
   "name": "encode-spec-engine-stylelint-config",
-  "version": "0.0.5",
+  "version": "0.0.12",
   "description": " CSS规范",
   "main": "index.js",
   "keywords": [
@@ -28,6 +28,6 @@
     "url": "git+https://github.com/qingFeng818/encode-spec-engine.git"
   },
   "bugs": {
-  "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
+    "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   }
 }

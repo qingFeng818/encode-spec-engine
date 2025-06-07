@@ -1,6 +1,6 @@
 {
   "name": "encode-spec-engine-lint",
-  "version": "0.0.7",
+  "version": "0.0.12",
   "description": "前端编码规范工程化脚手架",
   "bin": "./lib/cli.js",
   "main": "./lib/index.js",

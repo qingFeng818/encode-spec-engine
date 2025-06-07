@@ -1,6 +1,6 @@
 {
   "name": "encode-spec-engine-commitlint-config",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "commitlint 规范",
   "keywords": [
     "commitlint"
@@ -13,7 +13,6 @@
     "type": "git",
     "url": "git+https://github.com/qingFeng818/encode-spec-engine.git"
   },
-
   "bugs": {
     "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   },
