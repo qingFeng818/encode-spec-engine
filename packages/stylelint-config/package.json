@@ -1,0 +1,33 @@
+{
+  "name": "encode-spec-engine-stylelint-config",
+  "version": "0.0.5",
+  "description": " CSS规范",
+  "main": "index.js",
+  "keywords": [
+    "encode",
+    "style",
+    "lint"
+  ],
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "chenghuai",
+  "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
+  "license": "ISC",
+  "peerDependencies": {
+    "stylelint": ">=8.3.0",
+    "stylelint-scss": ">=2.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "stylelint": "^14.3.0",
+    "stylelint-scss": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qingFeng818/encode-spec-engine.git"
+  },
+  "bugs": {
+  "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
+  }
+}

@@ -1,6 +1,13 @@
-47 error Error: Command failed with exit code 128: git tag v0.0.2 -m v0.0.2
-47 error fatal: tag 'v0.0.2' already exists
-47 error     at makeError (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\lib\error.js:59:11)
-47 error     at handlePromise (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\execa@5.0.0\node_modules\execa\index.js:114:26)
-47 error     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-47 error     at async Promise.all (index 0)
+0 silly argv {
+0 silly argv   _: [ 'run' ],
+0 silly argv   lernaVersion: '6.6.2',
+0 silly argv   '$0': 'node_modules\\lerna\\dist\\cli.js',
+0 silly argv   script: 'test'
+0 silly argv }
+1 notice cli v6.6.2
+2 verbose rootPath C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine
+3 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
+4 error JSONError: Expected double-quoted property name in JSON at position 613 (line 22 column 1) while parsing '{  "name": "encode-spec-engine-commitl' in packages\commitlint-config\package.json
+4 error     at parseJson (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\parse-json@5.2.0\node_modules\parse-json\index.js:29:21)
+4 error     at parse (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\load-json-file@6.2.0\node_modules\load-json-file\index.js:15:9)
+4 error     at module.exports (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\load-json-file@6.2.0\node_modules\load-json-file\index.js:18:47)
