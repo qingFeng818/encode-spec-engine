@@ -3,7 +3,7 @@
   "version": "0.0.12",
   "description": "自定义eslint插件",
   "scripts": {
-    "test": "jest",
+    "test": "jest"
   },
   "files": [
     "configs/",

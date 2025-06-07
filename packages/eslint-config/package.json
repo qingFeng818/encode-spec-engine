@@ -1,5 +1,5 @@
 {
-  "name": "encode-spec-engine-eslint-config",
+  "name": "encode-spec-engine-eslintconfig",
   "version": "0.0.12",
   "main": "index.js",
   "description": "印客学院 JavaScript TypeScript Node 规范",
