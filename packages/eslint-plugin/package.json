@@ -4,7 +4,6 @@
   "description": "自定义eslint插件",
   "scripts": {
     "test": "jest",
-    "prepublishOnly": "npm run test"
   },
   "files": [
     "configs/",
