@@ -7,7 +7,7 @@
 1 notice cli v6.6.2
 2 verbose rootPath C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine
 3 verbose packageConfigs Package manager 'pnpm' detected. Resolving packages using 'pnpm-workspace.yaml'.
-4 error JSONError: Expected double-quoted property name in JSON at position 411 (line 13 column 3) while parsing '{  "name": "encode-spec-engine-clilint"' in packages\encode-fe-lint\package.json
+4 error JSONError: Expected double-quoted property name in JSON at position 404 (line 13 column 3) while parsing '{  "name": "encode-spec-clilint",  "ve' in packages\encode-fe-lint\package.json
 4 error     at parseJson (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\parse-json@5.2.0\node_modules\parse-json\index.js:29:21)
 4 error     at parse (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\load-json-file@6.2.0\node_modules\load-json-file\index.js:15:9)
 4 error     at module.exports (C:\Users\dduuy\Desktop\印客\前端编码规范工程化\encode-spec-engine\node_modules\.pnpm\load-json-file@6.2.0\node_modules\load-json-file\index.js:18:47)
