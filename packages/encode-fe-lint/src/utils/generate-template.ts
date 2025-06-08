@@ -11,14 +11,13 @@ import {
 } from './constants';
 
 /**
- * vscode 配置合并
+ * vscode配置合并
  * @param filepath
  * @param content
  */
 const mergeVSCodeConfig = (filepath: string, content: string) => {
-  // 不需要 merge
+  // 不需要merge
   if (!fs.existsSync(filepath)) return content;
-
   try {
     const targetData = fs.readJSONSync(filepath);
     const sourceData = JSON.parse(content);
@@ -31,7 +30,7 @@ const mergeVSCodeConfig = (filepath: string, content: string) => {
       null,
       2,
     );
-  } catch (e) {
+  } catch (error) {
     return '';
   }
 };
@@ -54,15 +53,9 @@ export default (cwd: string, data: Record<string, any>, vscode?: boolean) => {
       markdownLintIgnores: MARKDOWN_LINT_IGNORE_PATTERN,
       ...data,
     });
-
-    // 合并 vscode config
     if (/^_vscode/.test(name)) {
       content = mergeVSCodeConfig(filepath, content);
     }
-
-    // 跳过空文件
-    if (!content.trim()) continue;
-
     fs.outputFileSync(filepath, content, 'utf8');
   }
 };

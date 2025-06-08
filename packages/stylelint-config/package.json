@@ -1,6 +1,6 @@
 {
-  "name": "encode-spec-engine-stylelint-config",
-  "version": "0.0.14",
+  "name": "encode-stylelint-config",
+  "version": "0.0.1",
   "description": " CSS规范",
   "main": "index.js",
   "keywords": [

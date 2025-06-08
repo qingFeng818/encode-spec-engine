@@ -73,7 +73,7 @@ export interface ScanReport {
 }
 
 export interface InitOptions {
-  cwd: string;
+  cwd?: string;
   // 是否检查并升级 encode-fe-lint 的版本
   checkVersionUpdate: boolean;
   // 是否需要自动重写 lint 配置

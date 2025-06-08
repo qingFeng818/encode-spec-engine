@@ -15,7 +15,7 @@ $ npm install encode-spec-engine-eslint-plugin eslint --save-dev
 ```js
 // .eslintrc.js
 module.exports = {
-  plugin: ['encode-fe-eslint-config'],
+  plugin: ['encode-eslint-config'],
   rules: {
     'encode-spec-engine-eslint-plugin/no-secret-info': 'error',
   },

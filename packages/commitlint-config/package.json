@@ -1,6 +1,6 @@
 {
-  "name": "encode-spec-engine-commitlint-config",
-  "version": "0.0.14",
+  "name": "encode-commitlint-config",
+  "version": "0.0.1",
   "description": "commitlint 规范",
   "keywords": [
     "commitlint"

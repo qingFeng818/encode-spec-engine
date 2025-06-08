@@ -38,14 +38,14 @@
 
 | 规约                                                              | Lint 工具                                                  | npm 包                                                                                       |
 | ----------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| JavaScript 编码规范 <br/> TypeScript 编码规范 <br/> Node 编码规范 | [ESLint](https://eslint.org/)                              | [encode-fe-eslint-config](https://www.npmjs.com/package/encode-fe-eslint-config)             |
-| CSS 编码规范                                                      | [stylelint](https://stylelint.io/)                         | [encode-fe-stylelint-config](https://www.npmjs.com/package/encode-fe-stylelint-config)       |
-| Git 规范                                                          | [commitlint](https://commitlint.js.org/#/)                 | [encode-fe-commitlint-config](https://www.npmjs.com/package/encode-fe-commitlint-config)     |
-| 文档规范                                                          | [markdownlint](https://github.com/DavidAnson/markdownlint) | [encode-fe-markdownlint-config](https://www.npmjs.com/package/encode-fe-markdownlint-config) |
+| JavaScript 编码规范 <br/> TypeScript 编码规范 <br/> Node 编码规范 | [ESLint](https://eslint.org/)                              | [encode-eslint-config](https://www.npmjs.com/package/encode-eslint-config)             |
+| CSS 编码规范                                                      | [stylelint](https://stylelint.io/)                         | [encode-stylelint-config](https://www.npmjs.com/package/encode-stylelint-config)       |
+| Git 规范                                                          | [commitlint](https://commitlint.js.org/#/)                 | [encode-spec-engine-commitlint-config](https://www.npmjs.com/package/encode-spec-engine-commitlint-config)     |
+| 文档规范                                                          | [markdownlint](https://github.com/DavidAnson/markdownlint) | [encode-markdownlint-config](https://www.npmjs.com/package/encode-markdownlint-config) |
 
-[encode-fe-spec-cli](https://www.npmjs.com/package/encode-fe-spec-cli) 收敛屏蔽了上述依赖和配置细节，提供简单的 `CLI` 和 `Node.js API`，让项目能够一键接入、一键扫描、一键修复、一键升级，并为项目配置 git commit 卡口，降低项目接入规约的成本。
+[encode-spec-cli](https://www.npmjs.com/package/encode-spec-cli) 收敛屏蔽了上述依赖和配置细节，提供简单的 `CLI` 和 `Node.js API`，让项目能够一键接入、一键扫描、一键修复、一键升级，并为项目配置 git commit 卡口，降低项目接入规约的成本。
 
-您可以使用[encode-fe-spec-cli](https://www.npmjs.com/package/encode-fe-spec-cli) 方便地为项目接入全部规范。
+您可以使用[encode-spec-cli](https://www.npmjs.com/package/encode-spec-cli) 方便地为项目接入全部规范。
 
 ## 其他
 
