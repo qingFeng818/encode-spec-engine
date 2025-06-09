@@ -37,11 +37,11 @@
     "@types/stylelint": "^14.0.0",
     "@types/text-table": "^0.2.2",
     "copyfiles": "^2.4.1",
-    "encode-spec-clilint": "^0.0.14",
-    "encode-spec-engine-commitlint-config": "~0.0.14",
-    "encode-spec-engine-eslintconfig": "~0.0.14",
-    "encode-spec-engine-markdownlint-config": "~0.0.14",
-    "encode-spec-engine-stylelint-config": "~0.0.14",
+    "encode-cli-lint": "^0.0.15",
+    "encode-commitlint-config": "~0.0.15",
+    "encode-eslint-config": "~0.0.15",
+    "encode-markdownlint-config": "~0.0.15",
+    "encode-stylelint-config": "~0.0.15",
     "jest": "^27.5.1",
     "nyc": "^15.1.0",
     "typescript": "^4.6.2"
@@ -63,6 +63,9 @@
     "lodash": "^4.17.20",
     "ora": "^5.1.0",
     "strip-ansi": "^6.0.0",
+    "stylelint": "^14.3.0",
+    "stylelint-config-encode": "^1.0.9",
+    "stylelint-scss": "^4.1.0",
     "terminal-link": "^2.1.1",
     "text-table": "^0.2.0",
     "vue-eslint-parser": "^7.3.0"
@@ -79,8 +82,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "encode-spec-clilint commit-file-scan",
-      "commit-msg": "encode-spec-clilint commit-msg-scan"
+      "pre-commit": "encode-cli-lint commit-file-scan",
+      "commit-msg": "encode-cli-lint commit-msg-scan"
     }
   }
 }
