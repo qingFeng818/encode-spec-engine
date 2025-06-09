@@ -13,11 +13,9 @@ const rules = requireAll({
   dirname: path.resolve(__dirname, 'rules'),
 });
 
-console.log(rules);
 const configs = requireAll({
   dirname: path.resolve(__dirname, 'configs'),
 });
-console.log(configs);
 const processors = {
   '.json': {
     preprocess(test) {

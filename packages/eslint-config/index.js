@@ -15,7 +15,7 @@ module.exports = {
     './rules/base/es6',
     './rules/base/strict',
     './rules/imports',
-    './rules/vue.js'
+    './rules/vue.js',
   ].map(require.resolve),
   parser: '@babel/eslint-parser',
   parserOptions: {

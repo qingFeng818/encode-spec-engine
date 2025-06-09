@@ -6,12 +6,12 @@
 
 我们引入了多个业界流行的 Linter 作为《阿里巴巴前端规约》的配套，并根据规约内容定制了规则包，它们包括：
 
-| 规约                                                              | Lint 工具                                                  | npm 包                                                                                       |
-| ----------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| JavaScript 编码规范 <br/> TypeScript 编码规范 <br/> Node 编码规范 | [ESLint](https://eslint.org/)                              | [encode-eslint-config](https://www.npmjs.com/package/encode-eslint-config)             |
-| CSS 编码规范                                                      | [stylelint](https://stylelint.io/)                         | [encode-stylelint-config](https://www.npmjs.com/package/encode-stylelint-config)       |
-| Git 规范                                                          | [commitlint](https://commitlint.js.org/#/)                 | [encode-spec-engine-commitlint-config](https://www.npmjs.com/package/encode-spec-engine-commitlint-config)     |
-| 文档规范                                                          | [markdownlint](https://github.com/DavidAnson/markdownlint) | [encode-markdownlint-config](https://www.npmjs.com/package/encode-markdownlint-config) |
+| 规约                                                              | Lint 工具                                                  | npm 包                                                                                         |
+| ----------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| JavaScript 编码规范 <br/> TypeScript 编码规范 <br/> Node 编码规范 | [ESLint](https://eslint.org/)                              | [encode-eslint-config](https://www.npmjs.com/package/encode-eslint-config)                     |
+| CSS 编码规范                                                      | [stylelint](https://stylelint.io/)                         | [encode-stylelint-config](https://www.npmjs.com/package/encode-stylelint-config)               |
+| Git 规范                                                          | [commitlint](https://commitlint.js.org/#/)                 | [encode-spec-engine-commitlint-config](https://www.npmjs.com/package/encode-commitlint-config) |
+| 文档规范                                                          | [markdownlint](https://github.com/DavidAnson/markdownlint) | [encode-markdownlint-config](https://www.npmjs.com/package/encode-markdownlint-config)         |
 
 可以看到这些 `Linter` 和规则包众多且零散，全部安装它们会给项目增加十几个依赖，接入和升级成本都比较高。
 
@@ -85,15 +85,15 @@ npm install encode-lint --save
 
 config 参数如下：
 
-| 参数               | 类型       | 默认值 | 说明                                                                                                                |
-| ------------------ | ---------- | ------ | ------------------------------------------------------------------------------------------------------------------- |
-| cwd                | string     | -      | 项目绝对路径                                                                                                        |
+| 参数               | 类型       | 默认值 | 说明                                                                                                             |
+| ------------------ | ---------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
+| cwd                | string     | -      | 项目绝对路径                                                                                                     |
 | eslintType         | ESLintType | -      | 语言和框架类型，如果不配置，等同于 encode-lint init，控制台会出现选择器，如果配置，控制台就不会出现选择器        |
-| enableESLint       | boolean    | true   | 是否启用 ESLint，如果不配置默认值为 true，即默认启用 ESLint                                                         |
+| enableESLint       | boolean    | true   | 是否启用 ESLint，如果不配置默认值为 true，即默认启用 ESLint                                                      |
 | enableStylelint    | boolean    | -      | 是否启用 stylelint，如果不配置，等同于 encode-lint init，控制台会出现选择器，如果配置，控制台就不会出现选择器    |
 | enableMarkdownlint | boolean    | -      | 是否启用 markdownlint，如果不配置，等同于 encode-lint init，控制台会出现选择器，如果配置，控制台就不会出现选择器 |
-| enablePrettier     | boolean    | -      | 是否启用 Prettier                                                                                                   |
-| disableNpmInstall  | boolean    | false  | 是否禁用自动在初始化完成后安装依赖                                                                                  |
+| enablePrettier     | boolean    | -      | 是否启用 Prettier                                                                                                |
+| disableNpmInstall  | boolean    | false  | 是否禁用自动在初始化完成后安装依赖                                                                               |
 
 ##### ESLintType
 
