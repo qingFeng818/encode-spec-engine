@@ -1,6 +1,6 @@
 {
   "name": "encode-eslint-config",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "main": "index.js",
   "description": " JavaScript TypeScript Node 规范",
   "keywords": [
