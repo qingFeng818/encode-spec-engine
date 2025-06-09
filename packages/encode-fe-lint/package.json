@@ -6,7 +6,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "dev": "npm run copyfiles && tsc -w",
-    "build": "rm -rf lib && npm run copyfiles && tsc",
+    "build": "rimraf lib && npm run copyfiles && tsc",
     "copyfiles": "copyfiles -a -u 1 \"src/config/**\" lib",
     "test": "npm run build && jest",
     "coverage": "nyc jest --silent --forceExit",
@@ -42,6 +42,8 @@
     "encode-eslint-config": "^0.0.18",
     "encode-markdownlint-config": "^0.0.18",
     "encode-stylelint-config": "^0.0.18",
+    "markdownlint-config-encode": "^1.0.8",
+    "markdownlint-rule-helpers": "^0.13.0",
     "jest": "^27.5.1",
     "nyc": "^15.1.0",
     "typescript": "^4.6.2"
