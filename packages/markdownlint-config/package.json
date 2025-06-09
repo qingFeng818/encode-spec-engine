@@ -1,6 +1,6 @@
 {
   "name": "encode-markdownlint-config",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "markdown 规范",
   "main": "index.json",
   "keywords": [
