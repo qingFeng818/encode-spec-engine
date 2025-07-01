@@ -13,7 +13,6 @@ export default async (options: ScanOptions): Promise<ScanReport> => {
   };
 
   const pkg: PKG = readConfigFile('package.json');
-
   const config: Config = scanConfig || readConfigFile(`${PKG_NAME}.config.js`);
   const runErrors: Error[] = [];
   let results: ScanResult[] = [];
@@ -27,8 +26,10 @@ export default async (options: ScanOptions): Promise<ScanReport> => {
   if (config.enableESLint !== false) {
     try {
       const eslintResults = await doESLint({ ...options, pkg, config });
+      console.log(eslintResults, 'eslintResults');
       results = results.concat(eslintResults);
     } catch (error) {
+      console.log(error, 'error');
       runErrors.push(error as Error);
     }
   }
@@ -54,6 +55,7 @@ export default async (options: ScanOptions): Promise<ScanReport> => {
   }
 
   // 生成报告文件
+  console.log(outputReport, 'outputReport');
   if (outputReport) {
     const reportPath = path.resolve(process.cwd(), `${PKG_NAME}.report.json`);
     fs.outputFile(reportPath, JSON.stringify(results, null, 2), () => {});

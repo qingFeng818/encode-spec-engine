@@ -21,10 +21,16 @@ export async function doESLint(options: DoESLintOptions) {
       ignore: ESLINT_IGNORE_PATTERN,
     });
   }
-
+  console.log(files, typeof files, 'files');
+  // console.log(options, 'options');
+  console.log(getESLintConfig(options, options.pkg, options.config), 'config');
   const eslint = new ESLint(getESLintConfig(options, options.pkg, options.config));
-  const reports = await eslint.lintFiles(files);
+  console.log(eslint, 'eslint');
+  const reports = await eslint.lintFiles(JSON.stringify(files));
+  console.log(reports, 'reports');
+  const rulesMeta = eslint.getRulesMetaForResults(reports);
+  console.log(rulesMeta, 'rulesMeta');
   if (options.fix) await ESLint.outputFixes(reports);
-
+  console.log(reports, 'reports1');
   return formatESLintResults(reports, options.quiet, eslint);
 }

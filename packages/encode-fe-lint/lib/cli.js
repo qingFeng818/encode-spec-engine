@@ -217,9 +217,11 @@ commander_1.program
                         fix: true,
                         include: cmd.include || cwd,
                         ignore: cmd.ignore,
+                        outputReport: true,
                     })];
             case 2:
                 results = (_a.sent()).results;
+                console.log(results, 'end?');
                 checking.succeed();
                 if (results.length > 0)
                     (0, print_report_1.default)(results, true);

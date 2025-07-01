@@ -47,7 +47,8 @@ function getESLintConfig(opts, pkg, config) {
         Object.assign(lintConfig, config.eslintOptions);
     }
     else {
-        var lintConfigFiles = glob_1.default.sync('.eslintrc?(.@(js|yaml|yml|json))', { cwd: cwd });
+        var lintConfigFiles = glob_1.default.sync('.eslintrc?(.@(js|cjs|yaml|yml|json))', { cwd: cwd });
+        console.log(lintConfigFiles, 'lintConfigFiles');
         if (lintConfigFiles.length === 0 && !pkg.eslintConfig) {
             lintConfig.resolvePluginsRelativeTo = path_1.default.resolve(__dirname, '../../');
             lintConfig.useEslintrc = false;

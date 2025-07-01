@@ -17,7 +17,7 @@ function getStylelintConfig(opts, pkg, config) {
         Object.assign(lintConfig, config.stylelintOptions);
     }
     else {
-        var lintConfigFiles = glob_1.default.sync('.stylelintrc?(.@(js|yaml|yml|json))', { cwd: cwd });
+        var lintConfigFiles = glob_1.default.sync('.stylelintrc?(.@(js|cjs|yaml|yml|json))', { cwd: cwd });
         if (lintConfigFiles.length === 0 && !pkg.stylelint) {
             lintConfig.config = { extends: 'stylelint-config-standard' };
         }

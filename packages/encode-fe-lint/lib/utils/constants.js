@@ -87,12 +87,12 @@ exports.PROJECT_TYPES = [
 ];
 exports.ESLINT_FILE_EXT = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
 exports.ESLINT_IGNORE_PATTERN = [
-    'node_modules/',
-    'build/',
-    'dist/',
-    'coverage/',
-    'es/',
-    'lib/',
+    'node_modules/**',
+    'build/**',
+    'dist/**',
+    'coverage/**',
+    'es/**',
+    'lib/**',
     '**/*.min.js',
     '**/*-min.js',
     '**/*.bundle.js',

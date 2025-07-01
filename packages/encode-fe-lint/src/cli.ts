@@ -69,6 +69,7 @@ program
       outputReport: Boolean(cmd.outputReport),
       ignore: cmd.ignore,
     });
+
     let type = 'success';
     if (runErrors.length > 0 || errorCount > 0) {
       type = 'fail';
@@ -129,7 +130,9 @@ program
       fix: true,
       include: cmd.include || cwd,
       ignore: cmd.ignore,
+      outputReport: true,
     });
+    console.log(results, 'end?');
     checking.succeed();
     if (results.length > 0) printReport(results, true);
   });

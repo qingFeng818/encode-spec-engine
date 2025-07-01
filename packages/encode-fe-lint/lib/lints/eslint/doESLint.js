@@ -48,7 +48,7 @@ var formatESLintResults_1 = require("./formatESLintResults");
 var getESLintConfig_1 = require("./getESLintConfig");
 function doESLint(options) {
     return __awaiter(this, void 0, void 0, function () {
-        var files, eslint, reports;
+        var files, eslint, reports, rulesMeta;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -63,16 +63,24 @@ function doESLint(options) {
                     files = _a.sent();
                     _a.label = 3;
                 case 3:
+                    console.log(files, typeof files, 'files');
+                    console.log((0, getESLintConfig_1.getESLintConfig)(options, options.pkg, options.config), 'config');
                     eslint = new eslint_1.ESLint((0, getESLintConfig_1.getESLintConfig)(options, options.pkg, options.config));
-                    return [4, eslint.lintFiles(files)];
+                    console.log(eslint, 'eslint');
+                    return [4, eslint.lintFiles(JSON.stringify(files))];
                 case 4:
                     reports = _a.sent();
+                    console.log(reports, 'reports');
+                    rulesMeta = eslint.getRulesMetaForResults(reports);
+                    console.log(rulesMeta, 'rulesMeta');
                     if (!options.fix) return [3, 6];
                     return [4, eslint_1.ESLint.outputFixes(reports)];
                 case 5:
                     _a.sent();
                     _a.label = 6;
-                case 6: return [2, (0, formatESLintResults_1.formatESLintResults)(reports, options.quiet, eslint)];
+                case 6:
+                    console.log(reports, 'reports1');
+                    return [2, (0, formatESLintResults_1.formatESLintResults)(reports, options.quiet, eslint)];
             }
         });
     });

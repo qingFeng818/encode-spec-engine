@@ -9,6 +9,7 @@
     "dev": "npm run copyfiles && tsc -w",
     "build": "rimraf lib && npm run copyfiles && tsc",
     "copyfiles": "copyfiles -a -u 1 \"src/config/**\" lib",
+    "build1": "rimraf lib && encode-bundle src/index.ts --format iife,cjs,esm --dts --minify --global-name encodeMonitor --outDir lib",
     "test": "npm run build && jest",
     "coverage": "nyc jest --silent --forceExit",
     "encode-spec-clilint-scan": "encode-spec-clilint scan",
@@ -26,6 +27,7 @@
     "cli"
   ],
   "devDependencies": {
+    "@swc/core": "^1.12.9",
     "@types/command-exists": "^1.2.0",
     "@types/cross-spawn": "^6.0.2",
     "@types/ejs": "^3.1.0",
@@ -38,6 +40,7 @@
     "@types/stylelint": "^14.0.0",
     "@types/text-table": "^0.2.2",
     "copyfiles": "^2.4.1",
+    "encode-bundle": "^1.4.1",
     "jest": "^27.5.1",
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",

@@ -18,7 +18,7 @@ export function getStylelintConfig(opts: ScanOptions, pkg: PKG, config: Config):
     // 若用户传入了 stylelintOptions，则用用户的
     Object.assign(lintConfig, config.stylelintOptions);
   } else {
-    const lintConfigFiles = glob.sync('.stylelintrc?(.@(js|yaml|yml|json))', { cwd });
+    const lintConfigFiles = glob.sync('.stylelintrc?(.@(js|cjs|yaml|yml|json))', { cwd });
     if (lintConfigFiles.length === 0 && !pkg.stylelint) {
       lintConfig.config = { extends: 'stylelint-config-standard' };
     }

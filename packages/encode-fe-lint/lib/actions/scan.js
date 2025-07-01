@@ -81,10 +81,12 @@ exports.default = (function (options) { return __awaiter(void 0, void 0, void 0,
                 return [4, (0, lints_1.doESLint)(__assign(__assign({}, options), { pkg: pkg, config: config }))];
             case 4:
                 eslintResults = _a.sent();
+                console.log(eslintResults, 'eslintResults');
                 results = results.concat(eslintResults);
                 return [3, 6];
             case 5:
                 error_1 = _a.sent();
+                console.log(error_1, 'error');
                 runErrors.push(error_1);
                 return [3, 6];
             case 6:
@@ -116,6 +118,7 @@ exports.default = (function (options) { return __awaiter(void 0, void 0, void 0,
                 runErrors.push(e_2);
                 return [3, 14];
             case 14:
+                console.log(outputReport, 'outputReport');
                 if (outputReport) {
                     reportPath = path_1.default.resolve(process.cwd(), "".concat(constants_1.PKG_NAME, ".report.json"));
                     fs_extra_1.default.outputFile(reportPath, JSON.stringify(results, null, 2), function () { });
