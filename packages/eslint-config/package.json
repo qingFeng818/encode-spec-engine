@@ -13,7 +13,8 @@
   "scripts": {
     "lint": "eslint ./",
     "test": "mocha ./__tests__/*.test.js --timeout 5000",
-    "print-config": "eslint --print-config ./index.js > ./print-config.json"
+    "print-config": "eslint --print-config ./index.js > ./print-config.json",
+    "build1": "rimraf lib && encode-bundle src/index.ts --format iife,cjs,esm --dts --minify --global-name encodeMonitor --outDir lib"
   },
   "author": "mr_du",
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
