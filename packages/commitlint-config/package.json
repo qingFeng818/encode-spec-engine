@@ -1,6 +1,6 @@
 {
   "name": "encode-commitlint-config",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "commitlint 规范",
   "keywords": [
     "commitlint"
