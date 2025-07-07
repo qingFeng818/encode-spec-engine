@@ -25,8 +25,8 @@ export async function doESLint(options: DoESLintOptions) {
   // console.log(options, 'options');
   console.log(getESLintConfig(options, options.pkg, options.config), 'config');
   const eslint = new ESLint(getESLintConfig(options, options.pkg, options.config));
-  console.log(eslint, 'eslint');
-  const reports = await eslint.lintFiles(JSON.stringify(files));
+  console.log(eslint, 'eslint22');
+  const reports = await eslint.lintFiles(files);
   console.log(reports, 'reports');
   const rulesMeta = eslint.getRulesMetaForResults(reports);
   console.log(rulesMeta, 'rulesMeta');
