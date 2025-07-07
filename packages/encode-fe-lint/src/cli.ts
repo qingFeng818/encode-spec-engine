@@ -58,7 +58,7 @@ program
   .option('-i, --include <dirpath>', '指定要进行规范扫描的目录')
   .option('--no-ignore', '忽略 eslint 的 ignore 配置文件和 ignore 规则')
   .action(async (cmd) => {
-    console.log(22222, 'test');
+    console.log(23, 'test22222222222222222');
     await installDepsIfThereNo();
     const checking = ora();
     checking.start(`执行 ${PKG_NAME} 3333代码检查`);
@@ -71,7 +71,7 @@ program
       ignore: cmd.ignore,
     });
 
-    let type = 'success';
+    let type = 'succeed';
     if (runErrors.length > 0 || errorCount > 0) {
       type = 'fail';
     } else if (warningCount > 0) {

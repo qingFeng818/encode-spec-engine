@@ -25,7 +25,7 @@ export function getESLintConfig(opts: ScanOptions, pkg: PKG, config: Config): ES
   } else {
     // 根据扫描目录下有无lintrc文件，若无则使用默认的 lint 配置
     const lintConfigFiles = glob.sync('.eslintrc?(.@(js|cjs|yaml|yml|json))', { cwd });
-    console.log(lintConfigFiles, 'lintConfigFiles');
+    console.log(lintConfigFiles, 'lintConfigFiles',lintConfigFiles.length);
     if (lintConfigFiles.length === 0 && !pkg.eslintConfig) {
       lintConfig.resolvePluginsRelativeTo = path.resolve(__dirname, '../../');
       lintConfig.useEslintrc = false;

@@ -110,7 +110,7 @@ commander_1.program
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                console.log(22222, 'test');
+                console.log(23, 'test22222222222222222');
                 return [4, installDepsIfThereNo()];
             case 1:
                 _b.sent();
