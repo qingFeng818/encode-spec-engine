@@ -109,11 +109,13 @@ commander_1.program
     var checking, _a, results, errorCount, warningCount, runErrors, type;
     return __generator(this, function (_b) {
         switch (_b.label) {
-            case 0: return [4, installDepsIfThereNo()];
+            case 0:
+                console.log(22222, 'test');
+                return [4, installDepsIfThereNo()];
             case 1:
                 _b.sent();
                 checking = (0, ora_1.default)();
-                checking.start("\u6267\u884C ".concat(constants_1.PKG_NAME, " \u4EE3\u7801\u68C0\u67E5"));
+                checking.start("\u6267\u884C ".concat(constants_1.PKG_NAME, " 3333\u4EE3\u7801\u68C0\u67E5"));
                 return [4, (0, scan_1.default)({
                         cwd: cwd,
                         fix: false,
