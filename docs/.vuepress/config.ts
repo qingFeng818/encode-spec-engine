@@ -4,7 +4,7 @@ export default defineConfig4CustomTheme({
 	locales: {
 		'/': {
 			lang: 'zh-CN',
-			title: '印客2',
+			title: '杜运涛',
 			description: '前端编码规范工程化',
 		},
 	},
@@ -87,8 +87,8 @@ export default defineConfig4CustomTheme({
 
 		extendFrontmatter: {
 			author: {
-				name: '澄怀',
-				link: 'https://github.com/encode-studio-fe/fe-sepc',
+				name: '杜运涛',
+				link: 'https://github.com/qingFeng818/encode-spec-engine',
 			},
 		},
 	},

@@ -5,8 +5,8 @@ categories:
 tags:
     - 工程规范
 author:
-    name: 澄怀
-    link: https://github.com/encode-studio-fe/fe-spec
+    name: 杜运涛
+    link: https://github.com/qingFeng818/encode-spec-engine
 ---
 
 # 文档 规范

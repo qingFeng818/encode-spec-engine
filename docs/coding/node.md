@@ -6,7 +6,7 @@ tags:
     - 编码规范
 author:
     name: 澄怀
-    link: https://github.com/encode-studio-fe/fe-spec
+    link: https://github.com/qingFeng818/encode-spec-engine/blob/master/README.md
 ---
 
 # Node 编码规范

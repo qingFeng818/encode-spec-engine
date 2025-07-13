@@ -75,8 +75,8 @@ pnpm husky install
 
 ## :email: 联系
 
--   **印客学院官网**: <http://encodestudio.cn>
+<!--**官网**: <http://encodestudio.cn>
 -   **前端编码规范工程化** <https://encode-studio-fe.github.io/fe-spec/>
--   **GitHub**: <http://github.com/encode-studio-fe/fe-spec>
+-   **GitHub**: <http://github.com/encode-studio-fe/fe-spec> -->
 
 </br>
