@@ -5,5 +5,6 @@ import { defineUserConfig } from 'vuepress'
 export default defineUserConfig({
   bundler: viteBundler(),
   theme: defaultTheme(),
-  base: '/encode-spec-engine'
+  base: '/encode-spec-engine/',
+  publicPath: '/encode-spec-engine/'
 })
