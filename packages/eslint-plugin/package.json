@@ -16,7 +16,7 @@
     "eslint-plugin"
   ],
   "main": "src/index.js",
-  "author": "chenghuai",
+  "author": "qingfeng",
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
   "license": "ISC",
   "repository": {

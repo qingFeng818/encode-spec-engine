@@ -87,7 +87,7 @@ export default defineConfig4CustomTheme({
 
 		extendFrontmatter: {
 			author: {
-				name: '杜运涛',
+				name: 'qingfeng',
 				link: 'https://github.com/qingFeng818/encode-spec-engine/blob/v0.0.25/README.md',
 			},
 		},
