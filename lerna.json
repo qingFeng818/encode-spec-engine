@@ -1,7 +1,7 @@
 {
   "useWorkspaces": true,
   "name": "encode-spec-engine",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "packages": [
     "packages/*"
   ],
