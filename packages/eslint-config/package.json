@@ -1,6 +1,6 @@
 {
   "name": "encode-eslint-config",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "main": "index.js",
   "description": " JavaScript TypeScript Node 规范",
   "keywords": [
@@ -48,5 +48,6 @@
   },
   "dependencies": {
     "eslint-plugin-node": "^11.1.0"
-  }
+  },
+  "gitHead": "0f13060e992f11258b4b8456118e53251deabdda"
 }

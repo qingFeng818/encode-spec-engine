@@ -1,6 +1,6 @@
 {
   "name": "encode-stylelint-config",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": " CSS规范",
   "main": "index.js",
   "keywords": [
@@ -30,5 +30,5 @@
   "bugs": {
     "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   },
-  "gitHead": "4d881c753faf970f687edc04658749d22825b651"
+  "gitHead": "0f13060e992f11258b4b8456118e53251deabdda"
 }

@@ -1,6 +1,6 @@
 {
   "name": "encode-cli-lint",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "前端编码规范工程化脚手架",
   "type": "commonjs",
   "bin": "./lib/cli.js",
@@ -58,11 +58,11 @@
     "commander": "^6.2.1",
     "cross-spawn": "^7.0.3",
     "ejs": "^3.1.5",
-    "encode-commitlint-config": "^0.0.27",
-    "encode-eslint-config": "^0.0.27",
-    "encode-eslint-plugin": "^0.0.27",
-    "encode-markdownlint-config": "^0.0.27",
-    "encode-stylelint-config": "^0.0.27",
+    "encode-commitlint-config": "^0.0.28",
+    "eslint-config-encode": "^0.0.28",
+    "eslint-plugin-encode": "^0.0.28",
+    "markdownlint-config-encode": "^0.0.28",
+    "stylelint-config-encode": "^0.0.28",
     "eslint": "^8.7.0",
     "eslint-config-egg": "^10.0.0",
     "eslint-config-prettier": "^8.3.0",
@@ -108,5 +108,5 @@
       "commit-msg": "encode-cli-lint commit-msg-scan"
     }
   },
-  "gitHead": "6a7c5ce1e9457dce670e4df24412910d2e97a8f4"
+  "gitHead": "0f13060e992f11258b4b8456118e53251deabdda"
 }
