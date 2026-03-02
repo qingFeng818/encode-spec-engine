@@ -58,13 +58,10 @@
     "commander": "^6.2.1",
     "cross-spawn": "^7.0.3",
     "ejs": "^3.1.5",
-    "encode-commitlint-config": "^0.0.29",
     "eslint": "^8.7.0",
     "eslint-config-egg": "^10.0.0",
-    "eslint-config-encode": "^0.0.28",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-encode": "^0.0.28",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^4.0.0",
@@ -80,17 +77,20 @@
     "is-docker": "^2.1.1",
     "lodash": "^4.17.20",
     "markdownlint": "^0.25.1",
-    "markdownlint-config-encode": "^0.0.28",
     "markdownlint-rule-helpers": "^0.13.0",
     "ora": "^5.1.0",
     "prettier": "^2.2.1",
     "strip-ansi": "^6.0.0",
     "stylelint": "^14.3.0",
-    "stylelint-config-encode": "^0.0.28",
     "stylelint-scss": "^4.1.0",
     "terminal-link": "^2.1.1",
     "text-table": "^0.2.0",
-    "vue-eslint-parser": "^7.3.0"
+    "vue-eslint-parser": "^7.3.0",
+    "encode-eslint-plugin": "^0.0.25",
+    "encode-eslint-config": "^0.0.25",
+    "encode-markdownlint-config": "^0.0.25",
+    "encode-commitlint-config": "^0.0.25",
+    "encode-stylelint-config": "^0.0.25"
   },
   "author": "qingfeng",
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
@@ -108,5 +108,5 @@
       "commit-msg": "encode-cli-lint commit-msg-scan"
     }
   },
-  "gitHead": "0f13060e992f11258b4b8456118e53251deabdda"
+  "gitHead": "398fc03f55ab3d104618dbb5f1c52d8bd38c6f7d"
 }
