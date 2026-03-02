@@ -1,6 +1,6 @@
 {
   "name": "encode-cli-lint",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "前端编码规范工程化脚手架",
   "type": "commonjs",
   "bin": "./lib/cli.js",
@@ -58,6 +58,11 @@
     "commander": "^6.2.1",
     "cross-spawn": "^7.0.3",
     "ejs": "^3.1.5",
+    "encode-commitlint-config": "^0.0.25",
+    "encode-eslint-config": "^0.0.25",
+    "encode-eslint-plugin": "^0.0.25",
+    "encode-markdownlint-config": "^0.0.25",
+    "encode-stylelint-config": "^0.0.25",
     "eslint": "^8.7.0",
     "eslint-config-egg": "^10.0.0",
     "eslint-config-prettier": "^8.3.0",
@@ -85,12 +90,7 @@
     "stylelint-scss": "^4.1.0",
     "terminal-link": "^2.1.1",
     "text-table": "^0.2.0",
-    "vue-eslint-parser": "^7.3.0",
-    "encode-eslint-plugin": "^0.0.25",
-    "encode-eslint-config": "^0.0.25",
-    "encode-markdownlint-config": "^0.0.25",
-    "encode-commitlint-config": "^0.0.25",
-    "encode-stylelint-config": "^0.0.25"
+    "vue-eslint-parser": "^7.3.0"
   },
   "author": "qingfeng",
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
