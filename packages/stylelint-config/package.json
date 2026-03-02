@@ -1,6 +1,6 @@
 {
   "name": "encode-stylelint-config",
-  "version": "0.0.26",
+  "version": "0.027",
   "description": " CSS规范",
   "main": "index.js",
   "keywords": [
