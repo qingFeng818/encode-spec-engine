@@ -1,6 +1,6 @@
 {
   "name": "encode-eslint-plugin",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "自定义eslint插件",
   "scripts": {
     "test": "jest"
