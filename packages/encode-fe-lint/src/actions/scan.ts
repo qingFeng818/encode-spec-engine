@@ -1,64 +1,58 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { doESLint, doMarkdownlint, doPrettier, doStylelint } from '../lints';
-import type { Config, PKG, ScanOptions, ScanReport, ScanResult } from '../types';
-import { PKG_NAME } from '../utils/constants';
+import { doESLint, doMarkdownlint, doPrettier, doStylelint } from '../lints/index.js';
+import type { Config, PKG, ScanOptions, ScanReport, ScanResult } from '../types.js';
+import { PKG_NAME } from '../utils/constants.js';
 
 export default async (options: ScanOptions): Promise<ScanReport> => {
   const { cwd, fix, outputReport, config: scanConfig } = options;
 
-  const readConfigFile = (pth: string): any => {
+  const readConfigFile = async (pth: string): Promise<any> => {
     const locaPath = path.resolve(cwd, pth);
-    return fs.existsSync(locaPath) ? require(locaPath) : {};
+    if (!fs.existsSync(locaPath)) return {};
+    const config = await import(locaPath);
+    return config.default || config;
   };
 
-  const pkg: PKG = readConfigFile('package.json');
-  const config: Config = scanConfig || readConfigFile(`${PKG_NAME}.config.js`);
+  const pkg: PKG = JSON.parse(await fs.readFile(path.resolve(cwd, 'package.json'), 'utf8'));
+  const config: Config = scanConfig || (await readConfigFile(`${PKG_NAME}.config.js`));
   const runErrors: Error[] = [];
   let results: ScanResult[] = [];
 
-  // prettier
   if (fix && config.enablePrettier !== false) {
     await doPrettier(options);
   }
 
-  // eslint
   if (config.enableESLint !== false) {
     try {
       const eslintResults = await doESLint({ ...options, pkg, config });
-      console.log(eslintResults, 'eslintResults');
       results = results.concat(eslintResults);
     } catch (error) {
-      console.log(error, 'error');
       runErrors.push(error as Error);
     }
   }
 
-  // stylelint
   if (config.enableStylelint !== false) {
     try {
       const stylelintResults = await doStylelint({ ...options, pkg, config });
       results = results.concat(stylelintResults);
-    } catch (e) {
-      runErrors.push(e);
+    } catch (error) {
+      runErrors.push(error as Error);
     }
   }
 
-  // markdown
   if (config.enableMarkdownlint !== false) {
     try {
       const markdownlintResults = await doMarkdownlint({ ...options, pkg, config });
       results = results.concat(markdownlintResults);
     } catch (e) {
-      runErrors.push(e);
+      runErrors.push(e as Error);
     }
   }
 
-  // 生成报告文件
-  console.log(outputReport, 'outputReport');
   if (outputReport) {
     const reportPath = path.resolve(process.cwd(), `${PKG_NAME}.report.json`);
-    fs.outputFile(reportPath, JSON.stringify(results, null, 2), () => {});
+    await fs.outputFile(reportPath, JSON.stringify(results, null, 2));
   }
 
   return {

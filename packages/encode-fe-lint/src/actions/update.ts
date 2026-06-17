@@ -1,12 +1,9 @@
 import { execSync } from 'child_process';
 import ora from 'ora';
-import log from '../utils/log';
-import npmType from '../utils/npm-type';
-import { PKG_NAME, PKG_VERSION } from '../utils/constants';
+import log from '../utils/log.js';
+import npmType from '../utils/npm-type.js';
+import { PKG_NAME, PKG_VERSION } from '../utils/constants.js';
 
-/**
- * 检查最新版本号
- */
 const checkLatestVersion = async (): Promise<string | null> => {
   const npm = await npmType;
   const latestVersion = execSync(`${npm} view ${PKG_NAME} version`).toString('utf-8').trim();
@@ -16,7 +13,6 @@ const checkLatestVersion = async (): Promise<string | null> => {
   const compareArr = PKG_VERSION.split('.').map(Number);
   const beComparedArr = latestVersion.split('.').map(Number);
 
-  // 依次比较版本号每一位大小
   for (let i = 0; i < compareArr.length; i++) {
     if (compareArr[i] > beComparedArr[i]) {
       return null;
@@ -26,10 +22,6 @@ const checkLatestVersion = async (): Promise<string | null> => {
   }
 };
 
-/**
- * 检查包的版本
- * @param install - 自动安装最新包
- */
 export default async (install = true) => {
   const checking = ora(`[${PKG_NAME}] 正在检查最新版本...`);
   checking.start();

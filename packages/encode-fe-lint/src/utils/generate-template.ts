@@ -1,22 +1,16 @@
 import path from 'path';
 import fs from 'fs-extra';
 import _ from 'lodash';
-import glob from 'glob';
+import { glob } from 'glob';
 import ejs from 'ejs';
 import {
   ESLINT_IGNORE_PATTERN,
   STYLELINT_FILE_EXT,
   STYLELINT_IGNORE_PATTERN,
   MARKDOWN_LINT_IGNORE_PATTERN,
-} from './constants';
+} from './constants.js';
 
-/**
- * vscode配置合并
- * @param filepath
- * @param content
- */
 const mergeVSCodeConfig = (filepath: string, content: string) => {
-  // 不需要merge
   if (!fs.existsSync(filepath)) return content;
   try {
     const targetData = fs.readJSONSync(filepath);
@@ -35,12 +29,6 @@ const mergeVSCodeConfig = (filepath: string, content: string) => {
   }
 };
 
-/**
- * 实例化模板
- * @param cwd
- * @param data
- * @param vscode
- */
 export default (cwd: string, data: Record<string, any>, vscode?: boolean) => {
   const templatePath = path.resolve(__dirname, '../config');
   const templates = glob.sync(`${vscode ? '_vscode' : '**'}/*.ejs`, { cwd: templatePath });

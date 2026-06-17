@@ -1,7 +1,8 @@
 {
   "name": "encode-eslint-config",
   "version": "0.0.38",
-  "main": "index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "description": " JavaScript TypeScript Node 规范",
   "keywords": [
     "encode",
@@ -14,7 +15,25 @@
     "lint": "eslint ./",
     "test": "mocha ./__tests__/*.test.js --timeout 5000",
     "print-config": "eslint --print-config ./index.js > ./print-config.json",
-    "build1": "rimraf lib && encode-bundle src/index.ts --format iife,cjs,esm --dts --minify --global-name encodeMonitor --outDir lib"
+    "build": "tsup index.js --format cjs,esm --dts --clean --out-dir dist",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "rules",
+    "essential",
+    "flat.js"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./flat": "./flat.js",
+    "./flat.js": "./flat.js",
+    "./typescript": "./typescript/index.js",
+    "./react": "./react.js",
+    "./vue": "./vue.js"
   },
   "author": "mr_du",
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
@@ -27,27 +46,28 @@
     "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/eslint-parser": "^7.16.3",
-    "@babel/preset-react": "^7.16.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.7.0",
-    "eslint-config-egg": "^10.0.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "@babel/core": "^7.29.0",
+    "@babel/eslint-parser": "^7.28.6",
+    "@babel/preset-react": "^7.28.5",
+    "@typescript-eslint/eslint-plugin": "^8.59.3",
+    "@typescript-eslint/parser": "^8.59.3",
+    "eslint": "^9.39.2",
+    "eslint-config-egg": "^14.0.0",
+    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-jsx-plus": "^0.1.0",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-vue": "^7.3.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-vue": "^9.32.0",
     "lodash": "^4.17.21",
-    "mocha": "^8.2.1",
-    "typescript": "^4.1.2",
-    "vue-eslint-parser": "^7.3.0"
+    "mocha": "^11.1.0",
+    "typescript": "^5.9.2",
+    "vue-eslint-parser": "^10.1.1",
+    "tsup": "^8.4.0"
   },
   "dependencies": {
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-n": "^17.17.0"
   },
-  "gitHead": "ac774fd97fb3e81996f76069bcb466afac36dd7c"
+  "gitHead": "690d6c4b65c01572acc4b21ee155a540beb5fe35"
 }

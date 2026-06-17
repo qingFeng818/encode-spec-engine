@@ -19,7 +19,13 @@
     "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   },
   "peerDependencies": {
-    "markdownlint": "^0.28.1"
+    "markdownlint": "^0.37.1"
   },
-  "gitHead": "ac774fd97fb3e81996f76069bcb466afac36dd7c"
+  "exports": {
+    ".": "./index.json"
+  },
+  "files": [
+    "index.json"
+  ],
+  "gitHead": "690d6c4b65c01572acc4b21ee155a540beb5fe35"
 }

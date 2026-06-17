@@ -1,12 +1,11 @@
 import path from 'path';
 import fs from 'fs-extra';
-import glob from 'glob';
+import { glob } from 'glob';
 import inquirer from 'inquirer';
-import log from './log';
-import { PKG_NAME } from './constants';
-import type { PKG } from '../types';
+import log from './log.js';
+import { PKG_NAME } from './constants.js';
+import type { PKG } from '../types.js';
 
-// 精确移除依赖
 const packageNamesToRemove = [
   '@babel/eslint-parser',
   '@commitlint/cli',
@@ -20,7 +19,6 @@ const packageNamesToRemove = [
   'tslint',
 ];
 
-// 按前缀移除依赖
 const packagePrefixesToRemove = [
   '@commitlint/',
   '@typescript-eslint/',
@@ -30,10 +28,6 @@ const packagePrefixesToRemove = [
   'commitlint-',
 ];
 
-/**
- * 待删除的无用配置
- * @param cwd
- */
 const checkUselessConfig = (cwd: string): string[] => {
   return []
     .concat(glob.sync('.eslintrc?(.@(yaml|yml|json))', { cwd }))
@@ -46,10 +40,6 @@ const checkUselessConfig = (cwd: string): string[] => {
     .concat(glob.sync('.kylerc?(.@(yaml|yml|json))', { cwd }));
 };
 
-/**
- * 待重写的配置
- * @param cwd
- */
 const checkReWriteConfig = (cwd: string) => {
   return glob
     .sync('**/*.ejs', { cwd: path.resolve(__dirname, '../config') })
@@ -73,7 +63,6 @@ export default async (cwd: string, rewriteConfig?: boolean) => {
   const reWriteConfig = checkReWriteConfig(cwd);
   const willChangeCount = willRemovePackage.length + uselessConfig.length + reWriteConfig.length;
 
-  // 提示是否移除原配置
   if (willChangeCount > 0) {
     log.warn(`检测到项目中存在可能与 ${PKG_NAME} 冲突的依赖和配置，为保证正常运行将`);
 
@@ -105,12 +94,10 @@ export default async (cwd: string, rewriteConfig?: boolean) => {
     }
   }
 
-  // 删除配置文件
   for (const name of uselessConfig) {
     fs.removeSync(path.resolve(cwd, name));
   }
 
-  // 修正 package.json
   delete pkg.eslintConfig;
   delete pkg.eslintIgnore;
   delete pkg.stylelint;
@@ -119,6 +106,5 @@ export default async (cwd: string, rewriteConfig?: boolean) => {
     delete (pkg.devDependencies || {})[name];
   }
   fs.writeFileSync(path.resolve(cwd, 'package.json'), JSON.stringify(pkg, null, 2), 'utf8');
-
   return pkg;
 };

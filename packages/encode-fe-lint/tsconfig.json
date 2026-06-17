@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "outDir": "./lib",
-    "target": "ES5",
-    "module": "commonjs",
+    "target": "ES2020",
+    "module": "Node16",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "removeComments": true,
     "resolveJsonModule": true,
     "declaration": true,
     "downlevelIteration": true,
-    "types": ["node"]
+    "types": ["node"],
+    "skipLibCheck": true
   },
   "include": ["src"]
 }

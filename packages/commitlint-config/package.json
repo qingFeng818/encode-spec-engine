@@ -8,7 +8,21 @@
   "author": "qingfeng818 <dduuyyuu@qq.com>",
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
   "license": "ISC",
-  "main": "index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup index.js --format cjs,esm --dts --clean --out-dir dist",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qingFeng818/encode-spec-engine.git"
@@ -17,7 +31,10 @@
     "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   },
   "dependencies": {
-    "conventional-changelog-conventionalcommits": "^4.5.0"
+    "conventional-changelog-conventionalcommits": "^9.1.0"
   },
-  "gitHead": "ac774fd97fb3e81996f76069bcb466afac36dd7c"
+  "devDependencies": {
+    "tsup": "^8.4.0"
+  },
+  "gitHead": "690d6c4b65c01572acc4b21ee155a540beb5fe35"
 }

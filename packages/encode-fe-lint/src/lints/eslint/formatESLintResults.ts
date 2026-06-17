@@ -1,10 +1,11 @@
 import { ESLint } from 'eslint';
-import type { ScanResult } from '../../types';
+import type { ScanResult } from '../../types.js';
 
-/**
- * 格式化 ESLint 输出结果
- */
-export function formatESLintResults(results: ESLint.LintResult[], quiet: boolean, eslint: ESLint): ScanResult[] {
+export function formatESLintResults(
+  results: ESLint.LintResult[],
+  quiet: boolean,
+  eslint: ESLint,
+): ScanResult[] {
   const rulesMeta = eslint.getRulesMetaForResults(results);
 
   return results
@@ -33,8 +34,7 @@ export function formatESLintResults(results: ESLint.LintResult[], quiet: boolean
               message: message.replace(/([^ ])\.$/u, '$1'),
               errored: fatal || severity === 2,
             };
-          }) // dont check ruleId, which can be null
-          // https://eslint.org/docs/developer-guide/nodejs-api.html#-lintmessage-type
+          })
           .filter(({ errored }) => (quiet ? errored : true)),
       }),
     );

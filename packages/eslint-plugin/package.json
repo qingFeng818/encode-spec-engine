@@ -3,11 +3,12 @@
   "version": "0.0.38",
   "description": "自定义eslint插件",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsup index.js --format cjs,esm --dts --clean --out-dir dist",
+    "prepublishOnly": "npm run build"
   },
   "files": [
-    "configs/",
-    "rules/",
+    "dist",
     "README.md"
   ],
   "keywords": [
@@ -15,7 +16,15 @@
     "eslint",
     "eslint-plugin"
   ],
-  "main": "src/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "author": "qingfeng",
   "homepage": "https://github.com/qingFeng818/encode-spec-engine#readme",
   "license": "ISC",
@@ -27,12 +36,13 @@
     "url": "https://github.com/qingFeng818/encode-spec-engine/issues"
   },
   "dependencies": {
-    "fs-extra": "^9.0.1",
+    "fs-extra": "^11.3.0",
     "require-all": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.7.0",
-    "jest": "^26.6.3"
+    "eslint": "^9.39.2",
+    "jest": "^29.7.0",
+    "tsup": "^8.4.0"
   },
-  "gitHead": "ac774fd97fb3e81996f76069bcb466afac36dd7c"
+  "gitHead": "690d6c4b65c01572acc4b21ee155a540beb5fe35"
 }

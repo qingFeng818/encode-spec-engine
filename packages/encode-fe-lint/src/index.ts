@@ -1,5 +1,5 @@
-import initAction from './actions/init';
-import type { InitOptions } from './types';
+import initAction from './actions/init.js';
+import type { InitOptions } from './types.js';
 
 type IInitOptions = Omit<InitOptions, 'checkVersionUpdate'>;
 

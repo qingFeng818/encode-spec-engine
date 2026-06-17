@@ -1,47 +1,55 @@
 import { ESLint } from 'eslint';
 import fs from 'fs-extra';
-import glob from 'glob';
+import { glob } from 'glob';
 import path from 'path';
-import type { Config, PKG, ScanOptions } from '../../types';
-import { ESLINT_FILE_EXT } from '../../utils/constants';
-import { getESLintConfigType } from './getESLintConfigType';
+import type { Config, PKG, ScanOptions } from '../../types.js';
+import { getESLintConfigType } from './getESLintConfigType.js';
+import prettier from 'prettier';
 
-/**
- * 获取 ESLint 配置
- */
 export function getESLintConfig(opts: ScanOptions, pkg: PKG, config: Config): ESLint.Options {
-  const { cwd, fix, ignore } = opts;
+  const { cwd, fix, ignore, cache } = opts;
   const lintConfig: ESLint.Options = {
     cwd,
     fix,
     ignore,
-    extensions: ESLINT_FILE_EXT,
+    cache,
     errorOnUnmatchedPattern: false,
   };
 
   if (config.eslintOptions) {
-    // 若用户传入了 eslintOptions，则用用户的
     Object.assign(lintConfig, config.eslintOptions);
   } else {
-    // 根据扫描目录下有无lintrc文件，若无则使用默认的 lint 配置
     const lintConfigFiles = glob.sync('.eslintrc?(.@(js|cjs|yaml|yml|json))', { cwd });
-    console.log(lintConfigFiles, 'lintConfigFiles',lintConfigFiles.length);
+    const getIgnorePatterns = () => {
+      const ignoreFilePath = path.resolve(__dirname, '../config/_eslintignore.ejs');
+      const fileContent = fs.readFileSync(ignoreFilePath, 'utf8');
+      const ignorePatterns = fileContent
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => line && !line.startsWith('#'));
+      return ignorePatterns;
+    };
     if (lintConfigFiles.length === 0 && !pkg.eslintConfig) {
-      lintConfig.resolvePluginsRelativeTo = path.resolve(__dirname, '../../');
-      lintConfig.useEslintrc = false;
-      lintConfig.baseConfig = {
-        extends: [
-          getESLintConfigType(cwd, pkg),
-          //  ESLint 不再管格式问题，直接使用 Prettier 进行格式化
-          ...(config.enablePrettier ? ['prettier'] : []),
-        ],
-      };
+      lintConfig.overrideConfig = [
+        {
+          files: ['**/*.{js,jsx,ts,tsx}'],
+          languageOptions: {
+            ecmaVersion: 'latest',
+            sourceType: 'module',
+            globals: {
+              window: 'readonly',
+              document: 'readonly',
+            },
+          },
+          ignores: getIgnorePatterns(),
+          ...(config.enablePrettier ? prettier : {}),
+        },
+      ];
     }
 
-    // 根据扫描目录下有无lintignore文件，若无则使用默认的 ignore 配置
     const lintIgnoreFile = path.resolve(cwd, '.eslintignore');
     if (!fs.existsSync(lintIgnoreFile) && !pkg.eslintIgnore) {
-      lintConfig.ignorePath = path.resolve(__dirname, '../config/_eslintignore.ejs');
+      lintConfig.ignorePatterns = getIgnorePatterns();
     }
   }
   return lintConfig;

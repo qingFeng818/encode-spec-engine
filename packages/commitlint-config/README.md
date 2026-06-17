@@ -5,7 +5,10 @@
 ## Usage
 
 ```
-const commitlintConfig = require('commitlint-config');
+import commitlintConfig from 'commitlint-config'
+
 
 // TODO: DEMONSTRATE API
+
 ```
+

@@ -1,13 +1,14 @@
 import fg from 'fast-glob';
 import { extname, join } from 'path';
 import stylelint from 'stylelint';
-import { PKG, ScanOptions } from '../../types';
-import { STYLELINT_FILE_EXT, STYLELINT_IGNORE_PATTERN } from '../../utils/constants';
-import { formatStylelintResults } from './formatStylelintResults';
-import { getStylelintConfig } from './getStylelintConfig';
+import { PKG, ScanOptions, Config } from '../../types.js';
+import { STYLELINT_FILE_EXT, STYLELINT_IGNORE_PATTERN } from '../../utils/constants.js';
+import { formatStylelintResults } from './formatStylelintResults.js';
+import { getStylelintConfig } from './getStylelintConfig.js';
 
 export interface DoStyleLintOptions extends ScanOptions {
   pkg: PKG;
+  config?: Config;
 }
 
 export async function doStylelint(options: DoStyleLintOptions) {
@@ -24,11 +25,12 @@ export async function doStylelint(options: DoStyleLintOptions) {
       ignore: STYLELINT_IGNORE_PATTERN,
     });
   }
-
+  if (files.length === 0) {
+    return [];
+  }
   const data = await stylelint.lint({
     ...getStylelintConfig(options, options.pkg, options.config),
     files,
   });
-
   return formatStylelintResults(data.results, options.quiet);
 }

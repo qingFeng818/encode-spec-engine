@@ -3,14 +3,9 @@ import table from 'text-table';
 import terminalLink from 'terminal-link';
 import isDocker from 'is-docker';
 import stripAnsi from 'strip-ansi';
-import { PKG_NAME, UNICODE } from './constants';
-import type { ScanResult } from '../types';
+import { PKG_NAME, UNICODE } from './constants.js';
+import type { ScanResult } from '../types.js';
 
-/**
- * 在控制台打印扫描报告
- * @param results
- * @param fix
- */
 export default (results: ScanResult[], fix: boolean): void => {
   let output = '\n';
   let errorCount = 0;
@@ -56,17 +51,11 @@ export default (results: ScanResult[], fix: boolean): void => {
   const total = errorCount + warningCount;
   const pluralize = (word, count) => (count === 1 ? word : `${word}s`);
 
-  // 修复日志
   if (fix) output += chalk.green('代码规约问题自动修复完成，请通过 git diff 确认修复效果 :D\n');
   if (fix && total > 0) {
     output += chalk.green('ps. 以上显示的是无法被自动修复的问题，需要手动进行修复\n');
   }
 
-  // 扫描日志，预期:
-  // ✖ x problems (y errors, z warnings)
-  // y error and z warnings potentially fixable with the `encode-cli-lint fix`
-  //
-  // ✔ no problems
   if (!fix && total > 0) {
     output += chalk[summaryColor].bold(
       [

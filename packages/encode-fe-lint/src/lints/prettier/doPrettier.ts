@@ -2,8 +2,8 @@ import fg from 'fast-glob';
 import { readFile, writeFile } from 'fs-extra';
 import { extname, join } from 'path';
 import prettier from 'prettier';
-import { ScanOptions } from '../../types';
-import { PRETTIER_FILE_EXT, PRETTIER_IGNORE_PATTERN } from '../../utils/constants';
+import { ScanOptions } from '../../types.js';
+import { PRETTIER_FILE_EXT, PRETTIER_IGNORE_PATTERN } from '../../utils/constants.js';
 
 export interface DoPrettierOptions extends ScanOptions {}
 
@@ -22,8 +22,19 @@ export async function doPrettier(options: DoPrettierOptions) {
 }
 
 async function formatFile(filepath: string) {
-  const text = await readFile(filepath, 'utf8');
-  const opitons = await prettier.resolveConfig(filepath);
-  const formatted = prettier.format(text, { ...opitons, filepath });
-  await writeFile(filepath, formatted, 'utf8');
+  try {
+    const text = await readFile(filepath, 'utf8');
+    const options = (await prettier.resolveConfig(filepath)) ?? {};
+
+    const formatted = await prettier.format(text, {
+      ...options,
+      filepath,
+    });
+
+    if (formatted !== text) {
+      await writeFile(filepath, formatted, 'utf8');
+    }
+  } catch (error) {
+    console.error(`❌ 格式化失败: ${filepath}`, error.message);
+  }
 }

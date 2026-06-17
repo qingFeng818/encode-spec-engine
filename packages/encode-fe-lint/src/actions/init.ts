@@ -2,19 +2,16 @@ import path from 'path';
 import fs from 'fs-extra';
 import inquirer from 'inquirer';
 import spawn from 'cross-spawn';
-import update from './update';
-import npmType from '../utils/npm-type';
-import log from '../utils/log';
-import conflictResolve from '../utils/conflict-resolve';
-import generateTemplate from '../utils/generate-template';
-import { PROJECT_TYPES, PKG_NAME } from '../utils/constants';
-import type { InitOptions, PKG } from '../types';
+import update from './update.js';
+import npmType from '../utils/npm-type.js';
+import log from '../utils/log.js';
+import conflictResolve from '../utils/conflict-resolve.js';
+import generateTemplate from '../utils/generate-template.js';
+import { PROJECT_TYPES, PKG_NAME } from '../utils/constants.js';
+import type { InitOptions, PKG } from '../types.js';
 
 let step = 0;
 
-/**
- * 选择项目语言和框架
- */
 const chooseEslintType = async (): Promise<string> => {
   const { type } = await inquirer.prompt({
     type: 'list',
@@ -26,10 +23,6 @@ const chooseEslintType = async (): Promise<string> => {
   return type;
 };
 
-/**
- * 选择是否启用 stylelint
- * @param defaultValue
- */
 const chooseEnableStylelint = async (defaultValue: boolean): Promise<boolean> => {
   const { enable } = await inquirer.prompt({
     type: 'confirm',
@@ -41,9 +34,6 @@ const chooseEnableStylelint = async (defaultValue: boolean): Promise<boolean> =>
   return enable;
 };
 
-/**
- * 选择是否启用 markdownlint
- */
 const chooseEnableMarkdownLint = async (): Promise<boolean> => {
   const { enable } = await inquirer.prompt({
     type: 'confirm',
@@ -55,9 +45,6 @@ const chooseEnableMarkdownLint = async (): Promise<boolean> => {
   return enable;
 };
 
-/**
- * 选择是否启用 prettier
- */
 const chooseEnablePrettier = async (): Promise<boolean> => {
   const { enable } = await inquirer.prompt({
     type: 'confirm',
@@ -78,40 +65,34 @@ export default async (options: InitOptions) => {
   const pkgPath = path.resolve(cwd, 'package.json');
   let pkg: PKG = fs.readJSONSync(pkgPath);
 
-  // 版本检查
   if (!isTest && checkVersionUpdate) {
     await update(false);
   }
 
-  // 初始化 `enableESLint`，默认为 true，无需让用户选择
   if (typeof options.enableESLint === 'boolean') {
     config.enableESLint = options.enableESLint;
   } else {
     config.enableESLint = true;
   }
 
-  // 初始化 `eslintType`
   if (options.eslintType && PROJECT_TYPES.find((choice) => choice.value === options.eslintType)) {
     config.eslintType = options.eslintType;
   } else {
     config.eslintType = await chooseEslintType();
   }
 
-  // 初始化 `enableStylelint`
   if (typeof options.enableStylelint === 'boolean') {
     config.enableStylelint = options.enableStylelint;
   } else {
     config.enableStylelint = await chooseEnableStylelint(!/node/.test(config.eslintType));
   }
 
-  // 初始化 `enableMarkdownlint`
   if (typeof options.enableMarkdownlint === 'boolean') {
     config.enableMarkdownlint = options.enableMarkdownlint;
   } else {
     config.enableMarkdownlint = await chooseEnableMarkdownLint();
   }
 
-  // 初始化 `enablePrettier`
   if (typeof options.enablePrettier === 'boolean') {
     config.enablePrettier = options.enablePrettier;
   } else {
@@ -123,21 +104,15 @@ export default async (options: InitOptions) => {
     pkg = await conflictResolve(cwd, options.rewriteConfig);
     log.success(`Step ${step}. 已完成项目依赖和配置冲突检查处理 :D`);
 
-    if(!disableNpmInstall){
+    if (!disableNpmInstall) {
       log.info(`Step ${++step}. 安装依赖`);
       const npm = await npmType;
-      spawn.sync(
-        npm,
-        ['i', '-D', PKG_NAME],
-        { stdio: 'inherit', cwd },
-      );
+      spawn.sync(npm, ['i', '-D', PKG_NAME], { stdio: 'inherit', cwd });
       log.success(`Step ${step}. 安装依赖成功 :D`);
     }
   }
 
-  // 更新 pkg.json
   pkg = fs.readJSONSync(pkgPath);
-  // 在 `package.json` 中写入 `scripts`
   if (!pkg.scripts) {
     pkg.scripts = {};
   }
@@ -148,7 +123,6 @@ export default async (options: InitOptions) => {
     pkg.scripts[`${PKG_NAME}-fix`] = `${PKG_NAME} fix`;
   }
 
-  // 配置 commit 卡点
   log.info(`Step ${++step}. 配置 git commit 卡点`);
   if (!pkg.husky) pkg.husky = {};
   if (!pkg.husky.hooks) pkg.husky.hooks = {};
@@ -161,7 +135,6 @@ export default async (options: InitOptions) => {
   generateTemplate(cwd, config);
   log.success(`Step ${step}. 写入配置文件成功 :D`);
 
-  // 完成信息
   const logs = [`${PKG_NAME} 初始化完成 :D`].join('\r\n');
   log.success(logs);
 };

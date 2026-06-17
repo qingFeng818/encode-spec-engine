@@ -1,9 +1,6 @@
-import markdownlint from 'markdownlint';
-import type { ScanResult } from '../../types';
+import * as markdownlint from 'markdownlint';
+import type { ScanResult } from '../../types.js';
 
-/**
- * 格式化 markdownlint 输出结果
- */
 export function formatMarkdownlintResults(
   results: markdownlint.LintResults,
   quiet: boolean,

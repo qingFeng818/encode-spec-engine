@@ -2,29 +2,26 @@
 import path from 'path';
 import fs from 'fs-extra';
 import ora from 'ora';
-import glob from 'glob';
+import { glob } from 'glob';
 import { execSync } from 'child_process';
-import scan from './actions/scan';
-import update from './actions/update';
-import log from './utils/log';
-import printReport from './utils/print-report';
-import { getCommitFiles, getAmendFiles } from './utils/git';
-import npmType from './utils/npm-type';
+import scan from './actions/scan.js';
+import update from './actions/update.js';
+import log from './utils/log.js';
+import printReport from './utils/print-report.js';
+import { getCommitFiles, getAmendFiles } from './utils/git.js';
+import npmType from './utils/npm-type.js';
 import { program } from 'commander';
 import spawn from 'cross-spawn';
-import init from './actions/init';
-import generateTemplate from './utils/generate-template';
-import { PKG_NAME, PKG_VERSION } from './utils/constants';
+import init from './actions/init.js';
+import generateTemplate from './utils/generate-template.js';
+import { PKG_NAME, PKG_VERSION } from './utils/constants.js';
 
 const cwd = process.cwd();
 
-/**
- * 若无node_modules目录，则帮用户install
- */
 const installDepsIfThereNo = async () => {
   const lintConfigFiles = [].concat(
-    glob.sync('.eslintrc?(.@(js|ymal|yml|json))', { cwd }),
-    glob.sync('.stylelintrc?(.@(js|ymal|yml|json))', { cwd }),
+    glob.sync('.eslintrc?(.@(js|yaml|yml|json))', { cwd }),
+    glob.sync('.stylelintrc?(.@(js|yaml|yml|json))', { cwd }),
     glob.sync('.markdownlint(.@(yaml|yml|json))', { cwd }),
   );
   const nodeModulesPath = path.resolve(cwd, 'node_modules');
@@ -35,9 +32,10 @@ const installDepsIfThereNo = async () => {
   }
 };
 
-program.version(PKG_VERSION)
-  .description(`${PKG_NAME} 是前端编码规范工程化的配套Lint工具,提供见到那的CLI和Node.js API,
-  让项目能够一键接入，一键扫描，一键修复，一键升级，并为项目配置git commit 卡点，降低项目实施规约成本`);
+program.version(PKG_VERSION).description(
+  `${PKG_NAME} 是前端编码规范工程化的配套Lint工具,提供强大的CLI和Node.js API,
+  让项目能够一键接入，一键扫描，一键修复，一键升级，并为项目配置git commit 卡点，降低项目实施规约成本`,
+);
 
 program
   .command('init')
@@ -46,7 +44,8 @@ program
   .action(async (cmd) => {
     if (cmd.vscode) {
       const configPath = path.resolve(cwd, `${PKG_NAME}.config.js`);
-      generateTemplate(cwd, require(configPath), true);
+      const config = await import(configPath);
+      generateTemplate(cwd, config.default || config, true);
     } else await init({ cwd, checkVersionUpdate: true });
   });
 
@@ -54,14 +53,13 @@ program
   .command('scan')
   .description('一键扫描, 对项目进行代码规范问题扫描')
   .option('-q, --quiet', '仅报告错误信息, - 默认:false')
-  .option('-o --output-report', '输出扫面出的规范问题日志')
+  .option('-o, --output-report', '输出扫面出的规范问题日志')
   .option('-i, --include <dirpath>', '指定要进行规范扫描的目录')
   .option('--no-ignore', '忽略 eslint 的 ignore 配置文件和 ignore 规则')
   .action(async (cmd) => {
-    console.log(23, 'test22222222222222222');
     await installDepsIfThereNo();
     const checking = ora();
-    checking.start(`执行 ${PKG_NAME} 3333代码检查`);
+    checking.start(`执行 ${PKG_NAME} 代码检查`);
     const { results, errorCount, warningCount, runErrors } = await scan({
       cwd,
       fix: false,
@@ -94,7 +92,7 @@ program
 program
   .command('commit-file-scan')
   .description('代码提交检查: git commit 时对提交代码进行规范问题扫描')
-  .option('-s --strict', '严格模式, 对warn 和 error 问题都卡口， 默认仅对 error 问题卡口')
+  .option('-s, --strict', '严格模式, 对warn 和 error 问题都卡口， 默认仅对 error 问题卡口')
   .action(async (cmd) => {
     await installDepsIfThereNo();
 
@@ -120,7 +118,7 @@ program
 program
   .command('fix')
   .description('一键修复, 自动修复项目的代码规范扫描问题')
-  .option('-i,--include <dirpath>', '指定要进行规范扫描的目录')
+  .option('-i, --include <dirpath>', '指定要进行规范扫描的目录')
   .option('--no-ignore', '忽略 eslint 的 ignore 配置文件和 ignore 规则')
   .action(async (cmd) => {
     await installDepsIfThereNo();
@@ -133,7 +131,6 @@ program
       ignore: cmd.ignore,
       outputReport: true,
     });
-    console.log(results, 'end?');
     checking.succeed();
     if (results.length > 0) printReport(results, true);
   });

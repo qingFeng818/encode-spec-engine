@@ -11,9 +11,9 @@
   "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.23",
+    "@vuepress/bundler-vite": "2.0.0-rc.24",
     "@vuepress/theme-default": "2.0.0-rc.108",
     "vue": "^3.5.16",
-    "vuepress": "2.0.0-rc.23"
+    "vuepress": "2.0.0-rc.24"
   }
 }

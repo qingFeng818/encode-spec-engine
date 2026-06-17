@@ -1,10 +1,10 @@
 import { ESLint } from 'eslint';
 import fg from 'fast-glob';
-import { extname, join } from 'path';
-import { Config, PKG, ScanOptions } from '../../types';
-import { ESLINT_FILE_EXT, ESLINT_IGNORE_PATTERN } from '../../utils/constants';
-import { formatESLintResults } from './formatESLintResults';
-import { getESLintConfig } from './getESLintConfig';
+import { extname } from 'path';
+import { Config, PKG, ScanOptions } from '../../types.js';
+import { ESLINT_FILE_EXT, ESLINT_IGNORE_PATTERN } from '../../utils/constants.js';
+import { formatESLintResults } from './formatESLintResults.js';
+import { getESLintConfig } from './getESLintConfig.js';
 
 export interface DoESLintOptions extends ScanOptions {
   pkg: PKG;
@@ -21,16 +21,12 @@ export async function doESLint(options: DoESLintOptions) {
       ignore: ESLINT_IGNORE_PATTERN,
     });
   }
-  console.log(files, typeof files, 'files');
-  // console.log(options, 'options');
-  console.log(getESLintConfig(options, options.pkg, options.config), 'config');
+  if (files.length === 0) {
+    return [];
+  }
   const eslint = new ESLint(getESLintConfig(options, options.pkg, options.config));
-  console.log(eslint, 'eslint22');
   const reports = await eslint.lintFiles(files);
-  console.log(reports, 'reports');
-  const rulesMeta = eslint.getRulesMetaForResults(reports);
-  console.log(rulesMeta, 'rulesMeta');
+  eslint.getRulesMetaForResults(reports);
   if (options.fix) await ESLint.outputFixes(reports);
-  console.log(reports, 'reports1');
   return formatESLintResults(reports, options.quiet, eslint);
 }

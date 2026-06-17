@@ -1,32 +1,37 @@
 import fs from 'fs-extra';
-import glob from 'glob';
+import { glob } from 'glob';
 import path from 'path';
 
 import { LinterOptions } from 'stylelint';
-import type { Config, PKG, ScanOptions } from '../../types';
-import { STYLELINT_IGNORE_PATTERN } from '../../utils/constants';
+import type { Config, PKG, ScanOptions } from '../../types.js';
+import { STYLELINT_IGNORE_PATTERN } from '../../utils/constants.js';
 
-/**
- * 获取 Stylelint 配置
- */
+let stylelintFile =
+  '{stylelint.config.js,stylelint.config.cjs,stylelint.config.mjs,.stylelintrc.js,.stylelintrc.cjs,.stylelintrc.yaml,.stylelintrc.yml,.stylelintrc.json}';
+
 export function getStylelintConfig(opts: ScanOptions, pkg: PKG, config: Config): LinterOptions {
   const { cwd, fix, ignore } = opts;
   if (config.enableStylelint === false) return {} as any;
 
-  const lintConfig: any = { fix: Boolean(fix), allowEmptyInput: true };
+  const lintConfig: any = {
+    fix: Boolean(fix),
+    allowEmptyInput: true,
+    disableDefaultIgnores: Boolean(ignore) === false,
+  };
   if (config.stylelintOptions) {
-    // 若用户传入了 stylelintOptions，则用用户的
     Object.assign(lintConfig, config.stylelintOptions);
   } else {
-    const lintConfigFiles = glob.sync('.stylelintrc?(.@(js|cjs|yaml|yml|json))', { cwd });
+    const lintConfigFiles = glob.sync(stylelintFile, { cwd });
     if (lintConfigFiles.length === 0 && !pkg.stylelint) {
       lintConfig.config = { extends: 'stylelint-config-standard' };
     }
 
-    //  根据扫描目录下有无lint
     const ignoreFilePath = path.resolve(cwd, '.stylelintignore');
     if (!fs.existsSync(ignoreFilePath)) {
-      lintConfig.ignorePattern = STYLELINT_IGNORE_PATTERN;
+      lintConfig.globbyOptions = {
+        cwd,
+        ignore: STYLELINT_IGNORE_PATTERN,
+      };
     }
   }
   return lintConfig;

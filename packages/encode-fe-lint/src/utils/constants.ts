@@ -74,7 +74,6 @@ export const PROJECT_TYPES: Array<{ name: string; value: string }> = [
 /**
  * eslint 扫描文件扩展名
  */
-export const ESLINT_FILE_EXT: string[] = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
 
 /**
  * eslint 扫描忽略的文件或文件目录
@@ -95,7 +94,9 @@ export const ESLINT_IGNORE_PATTERN: string[] = [
 /**
  * stylelint 扫描文件扩展名
  */
+export const MARKDOWN_LINT_FILE_EXT: string[] = ['.md'];
 export const STYLELINT_FILE_EXT: string[] = ['.css', '.scss', '.less', '.acss'];
+export const ESLINT_FILE_EXT: string[] = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
 
 /**
  * stylelint 扫描忽略的文件或文件目录
@@ -115,7 +116,6 @@ export const STYLELINT_IGNORE_PATTERN: string[] = [
 /**
  * markdownLint 扫描文件扩展名
  */
-export const MARKDOWN_LINT_FILE_EXT: string[] = ['.md'];
 
 /**
  * markdownLint 扫描忽略的文件或文件目录
