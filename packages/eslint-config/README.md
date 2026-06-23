@@ -190,7 +190,10 @@ npm i -D  eslint-plugin-jsx-a11y
 
 ```json
 {
-  "extends": ["encode-eslint-config/typescript/react", "encode-eslint-config/jsx-a11y"]
+  "extends": [
+    "encode-eslint-config/typescript/react",
+    "encode-eslint-config/jsx-a11y"
+  ]
 }
 ```
 

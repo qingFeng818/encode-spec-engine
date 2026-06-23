@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   extends: [
     "./rules/base/best-practices",
     "./rules/base/possible-errors",

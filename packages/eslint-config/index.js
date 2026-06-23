@@ -6,22 +6,22 @@
  * @FilePath: \encode-spec-engine\packages\eslint-config\index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-module.exports = {
+export default {
   extends: [
-    './rules/base/best-practices',
-    './rules/base/possible-errors',
-    './rules/base/style',
-    './rules/base/variables',
-    './rules/base/es6',
-    './rules/base/strict',
-    './rules/imports',
-    './rules/vue.js',
+    "./rules/base/best-practices",
+    "./rules/base/possible-errors",
+    "./rules/base/style",
+    "./rules/base/variables",
+    "./rules/base/es6",
+    "./rules/base/strict",
+    "./rules/imports",
+    "./rules/vue.js",
   ].map(require.resolve),
-  parser: '@babel/eslint-parser',
+  parser: "@babel/eslint-parser",
   parserOptions: {
     requireConfigFile: false,
     ecmaVersion: 2020,
-    sourceType: 'module',
+    sourceType: "module",
     ecmaFeatures: {
       globalReturn: false,
       impliedStrict: true,
