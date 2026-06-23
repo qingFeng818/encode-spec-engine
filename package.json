@@ -20,13 +20,17 @@
     "deploy": "bash deploy.sh",
     "publish": "lerna publish",
     "lint": "markdownlint README.md",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "commit": "git-cz",
+    "commitlint": "commitlint --edit $1"
   },
   "dependencies": {
     "conventional-changelog-conventionalcommits": "^9.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.3",
+    "commitizen": "^4.3.2",
+    "cz-git": "^1.13.1",
     "husky": "^9.1.7",
     "lerna": "^8.2.3",
     "markdownlint": "^0.37.1",
@@ -40,6 +44,11 @@
     "vuepress": "2.0.0-rc.24",
     "vuepress-plugin-one-click-copy": "^1.0.2",
     "vuepress-plugin-zooming": "^1.1.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   },
   "publishConfig": {
     "access": "public",

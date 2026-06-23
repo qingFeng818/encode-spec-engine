@@ -11,7 +11,7 @@ const DEFAULT_WHITE_LIST = [
   'stylelintrc.js',
 ];
 
-module.exports = {
+export default {
   name: RULE_NAME,
   meta: {
     type: 'suggestion',

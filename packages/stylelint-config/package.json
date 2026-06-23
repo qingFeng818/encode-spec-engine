@@ -1,7 +1,7 @@
 {
   "name": "encode-stylelint-config",
   "version": "0.0.38",
-  "description": " CSS规范",
+  "description": "CSS规范",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "keywords": [
@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "tsup index.js --format cjs,esm --dts --clean --out-dir dist",
+    "build": "tsup index.js less.js --format cjs,esm --dts --clean --out-dir dist",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -21,6 +21,10 @@
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./less": {
+      "import": "./dist/less.js",
+      "require": "./dist/less.cjs"
     }
   },
   "author": "qingfeng",
@@ -28,12 +32,16 @@
   "license": "ISC",
   "peerDependencies": {
     "stylelint": ">=16.0.0",
-    "stylelint-scss": ">=6.0.0"
+    "stylelint-scss": ">=6.0.0",
+    "stylelint-less": ">=3.0.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
     "stylelint": "^16.25.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-scss": "^6.12.1",
+    "stylelint-less": "^3.0.0",
     "tsup": "^8.4.0"
   },
   "repository": {

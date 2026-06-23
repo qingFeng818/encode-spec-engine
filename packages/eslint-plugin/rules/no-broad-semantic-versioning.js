@@ -1,8 +1,8 @@
-const path = require('path');
+import path from 'path';
 
 const RULE_NAME = 'no-broad-semantic-versioning';
 
-module.exports = {
+export default {
   name: RULE_NAME,
   meta: {
     type: 'problem',

@@ -1,6 +1,6 @@
 const RULE_NAME = 'no-http-url';
 
-module.exports = {
+export default {
   name: RULE_NAME,
   meta: {
     type: 'suggestion',

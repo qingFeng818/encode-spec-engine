@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   plugins: ['encode-spec-engine-eslint-plugin'],
   rules: {
     'encode-spec-engine-eslint-plugin/no-http-url': 'warn',

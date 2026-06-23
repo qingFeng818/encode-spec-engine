@@ -2,7 +2,7 @@ const RULE_NAME = 'no-secret-info';
 
 const DEFAULT_DANGEROUS_KEYS = ['secret', 'token', 'password'];
 
-module.exports = {
+export default {
   meta: {
     name: RULE_NAME,
     type: 'problem',

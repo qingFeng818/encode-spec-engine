@@ -1,8 +1,13 @@
 export default {
   defaultSeverity: 'warning',
-  plugins: ['stylelint-scss'],
-  extends: ['stylelint-config-standard-scss'],
+  plugins: ['stylelint-less'],
+  extends: ['stylelint-config-standard'],
   rules: {
+    // 禁用原生 at-rule 检查，使用 less 版本
+    'at-rule-no-unknown': null,
+    // 检查 Less at-rule（如 @mixin, @include, @extend, @import 等）
+    'less/at-rule-no-unknown': true,
+
     // 禁止空块
     'block-no-empty': true,
     // 禁止无效的十六进制颜色
@@ -98,54 +103,17 @@ export default {
     'selector-max-id': 0,
     // 单行值列表中逗号后必须有空格
     'value-list-comma-space-after': 'always-single-line',
+
+    // Less 变量冒号后必须有空格（如 @var: value）
+    'less/at-variable-colon-space-after': 'always',
+    // Less 变量冒号前不能有空格（如 @var: value）
+    'less/at-variable-colon-space-before': 'never',
+    // Less 混合调用后必须有分号（如 .mixin();）
+    'less/at-mixin-call-semicolon': 'always',
+    // Less 函数名后不能有空格（如 darken(@color, 10%)）
+    'less/function-name-space-after': 'never',
+    // Less 操作符必须有空格（如 @a + @b）
+    'less/operator-space-after': 'always',
+    'less/operator-space-before': 'always',
   },
-  overrides: [
-    {
-      files: ['**/*.scss'],
-      plugins: ['stylelint-scss'],
-      extends: ['stylelint-config-standard-scss'],
-      rules: {
-        // SCSS 文件禁用原生 at-rule 检查
-        'at-rule-no-unknown': null,
-        // 检查 SCSS at-rule（如 @mixin, @include, @extend 等）
-        'scss/at-rule-no-unknown': true,
-        // SCSS 双斜杠注释内部前后必须有空格（如 // comment）
-        'scss/double-slash-comment-whitespace-inside': 'always',
-        // 禁止 SCSS 空注释
-        'scss/comment-no-empty': true,
-        // SCSS 变量冒号后必须有空格（如 $var: value）
-        'scss/dollar-variable-colon-space-after': 'always',
-        // SCSS 变量冒号前不能有空格（如 $var: value）
-        'scss/dollar-variable-colon-space-before': 'never',
-        // SCSS 变量在选择器或属性中使用时必须使用插值（如 #{$var}）
-        'scss/dollar-variable-no-missing-interpolation': true,
-        // SCSS 操作符必须有空格（如 $a + $b）
-        'scss/operator-no-unspaced': true,
-        // 禁止冗余的嵌套选择器（如 & > &）
-        'scss/selector-no-redundant-nesting-selector': true,
-      },
-    },
-    {
-      files: ['**/*.less'],
-      plugins: ['stylelint-less'],
-      extends: ['stylelint-config-standard'],
-      rules: {
-        // Less 文件禁用原生 at-rule 检查
-        'at-rule-no-unknown': null,
-        // 检查 Less at-rule（如 @mixin, @include, @extend, @import 等）
-        'less/at-rule-no-unknown': true,
-        // Less 变量冒号后必须有空格（如 @var: value）
-        'less/at-variable-colon-space-after': 'always',
-        // Less 变量冒号前不能有空格（如 @var: value）
-        'less/at-variable-colon-space-before': 'never',
-        // Less 混合调用后必须有分号（如 .mixin();）
-        'less/at-mixin-call-semicolon': 'always',
-        // Less 函数名后不能有空格（如 darken(@color, 10%)）
-        'less/function-name-space-after': 'never',
-        // Less 操作符必须有空格（如 @a + @b）
-        'less/operator-space-after': 'always',
-        'less/operator-space-before': 'always',
-      },
-    },
-  ],
 };

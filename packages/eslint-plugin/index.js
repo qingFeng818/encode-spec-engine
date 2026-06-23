@@ -6,8 +6,8 @@
  * @FilePath: \encode-spec-engine\packages\eslint-plugin\index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-const path = require('path');
-const requireAll = require('require-all');
+import path from 'path';
+import requireAll from 'require-all';
 
 const rules = requireAll({
   dirname: path.resolve(__dirname, 'rules'),
@@ -19,12 +19,12 @@ const configs = requireAll({
 const processors = {
   '.json': {
     preprocess(test) {
-      return [`module.exports = ${test}`];
+      return [`export default ${test}`];
     },
   },
 };
 
-module.exports = {
+export default {
   rules,
   configs,
   processors,
