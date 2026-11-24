@@ -72,6 +72,20 @@ export const PROJECT_TYPES: Array<{ name: string; value: string }> = [
 ];
 
 /**
+ * ESLint 配置格式类型
+ */
+export const ESLINT_CONFIG_FORMATS: Array<{ name: string; value: string }> = [
+  {
+    name: '传统格式（.eslintrc.js）- 兼容 ESLint v8.x 及以下版本',
+    value: 'legacy',
+  },
+  {
+    name: 'Flat Config 格式（eslint.config.js）- ESLint v9.x/v10.x 推荐',
+    value: 'flat',
+  },
+];
+
+/**
  * eslint 扫描文件扩展名
  */
 

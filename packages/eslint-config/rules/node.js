@@ -4,8 +4,6 @@
  * @link https://github.com/mysticatea/eslint-plugin-node
  */
 
-module.exports = {
-  extends: [
-    'eslint-config-egg/lib/rules/node',
-  ],
+export default {
+  extends: ["eslint-config-egg/lib/rules/node"],
 };

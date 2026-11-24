@@ -1,12 +1,12 @@
-module.exports = {
+export default {
   extends: [
-    '../es5',
-    './rules/set-style-to-warn',
-    './rules/blacklist',
-  ].map(require.resolve),
+    "../es5.js",
+    "./rules/set-style-to-warn.js",
+    "./rules/blacklist.js",
+  ],
   rules: {
     // 逗号风格 - ES5 中不加最后一个逗号
     // @unessential
-    'comma-dangle': ['warn', 'never'],
+    "comma-dangle": ["warn", "never"],
   },
 };

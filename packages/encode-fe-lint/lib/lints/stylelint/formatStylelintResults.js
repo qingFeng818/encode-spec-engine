@@ -1,16 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.formatStylelintResults = void 0;
-var getStylelintDocUrl_1 = require("./getStylelintDocUrl");
-function formatStylelintResults(results, quiet) {
-    return results.map(function (_a) {
-        var source = _a.source, warnings = _a.warnings;
-        var errorCount = 0;
-        var warningCount = 0;
-        var messages = warnings
-            .filter(function (item) { return !quiet || item.severity === 'error'; })
-            .map(function (item) {
-            var _a = item.line, line = _a === void 0 ? 0 : _a, _b = item.column, column = _b === void 0 ? 0 : _b, rule = item.rule, severity = item.severity, text = item.text;
+import { getStylelintRuleDocUrl } from './getStylelintDocUrl.js';
+export function formatStylelintResults(results, quiet) {
+    return results.map(({ source, warnings }) => {
+        let errorCount = 0;
+        let warningCount = 0;
+        const messages = warnings
+            .filter((item) => !quiet || item.severity === 'error')
+            .map((item) => {
+            const { line = 0, column = 0, rule, severity, text } = item;
             if (severity === 'error') {
                 errorCount++;
             }
@@ -18,22 +14,21 @@ function formatStylelintResults(results, quiet) {
                 warningCount++;
             }
             return {
-                line: line,
-                column: column,
-                rule: rule,
-                url: (0, getStylelintDocUrl_1.getStylelintRuleDocUrl)(rule),
-                message: text.replace(/([^ ])\.&/, '$1').replace(new RegExp("\\(".concat(rule, "\\)")), ''),
+                line,
+                column,
+                rule,
+                url: getStylelintRuleDocUrl(rule),
+                message: text.replace(/([^ ])\.&/, '$1').replace(new RegExp(`\\(${rule}\\)`), ''),
                 errored: severity === 'error',
             };
         });
         return {
             filePath: source,
-            messages: messages,
-            errorCount: errorCount,
-            warningCount: warningCount,
+            messages,
+            errorCount,
+            warningCount,
             fixableErrorCount: 0,
             fixableWarningCount: 0,
         };
     });
 }
-exports.formatStylelintResults = formatStylelintResults;

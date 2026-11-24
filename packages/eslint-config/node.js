@@ -1,6 +1,3 @@
-module.exports = {
-  extends: [
-    './index',
-    './rules/node',
-  ].map(require.resolve),
+export default {
+  extends: ["./index.js", "./rules/node.js"],
 };

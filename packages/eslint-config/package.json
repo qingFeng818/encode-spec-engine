@@ -1,6 +1,7 @@
 {
   "name": "encode-eslint-config",
   "version": "0.0.38",
+  "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "description": " JavaScript TypeScript Node 规范",
@@ -67,6 +68,8 @@
     "tsup": "^8.4.0"
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^9.39.2",
     "eslint-plugin-n": "^17.17.0"
   },
   "gitHead": "690d6c4b65c01572acc4b21ee155a540beb5fe35"

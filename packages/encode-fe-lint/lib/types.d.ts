@@ -1,6 +1,6 @@
 import { ESLint } from 'eslint';
 import stylelint from 'stylelint';
-import markdownlint from 'markdownlint';
+import * as markdownlint from 'markdownlint';
 export interface PKG {
     eslintConfig?: any;
     eslintIgnore?: string[];
@@ -28,6 +28,7 @@ export interface ScanOptions {
     fix?: boolean;
     outputReport?: boolean;
     config?: Config;
+    cache?: boolean;
 }
 export interface ScanResult {
     filePath: string;
@@ -59,6 +60,7 @@ export interface InitOptions {
     enableStylelint?: boolean;
     enableMarkdownlint?: boolean;
     enablePrettier?: boolean;
+    eslintConfigFormat?: string;
     disableNpmInstall?: boolean;
 }
 export interface IGetLintConfig {

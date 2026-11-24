@@ -1,4 +1,6 @@
-export default {
+// 最佳实践规则配置
+// 同时支持 ES Module 和 CommonJS 格式
+const config = {
   rules: {
     // 强制 getter 和 setter 在对象中成对出现
     "accessor-pairs": "off",
@@ -132,7 +134,8 @@ export default {
     // 禁止在循环中的函数内出现外部作用域中定义且会发生变化的变量，以防止闭包副作用
     "no-loop-func": "error",
 
-    // 禁用魔术数字
+    // 禁止使用魔术数字
+    // @reason 魔术数字影响代码可读性，建议提取为常量
     "no-magic-numbers": [
       "off",
       {
@@ -159,9 +162,11 @@ export default {
     "no-new": "error",
 
     // 不要使用 Function 构造函数创建函数
+    // @reason Function 构造函数存在安全风险，性能较差
     "no-new-func": "error",
 
     // 不要使用 new Number/String/Boolean
+    // @reason 使用字面量更简洁高效
     "no-new-wrappers": "error",
 
     // 禁用八进制字面量
@@ -171,38 +176,44 @@ export default {
     "no-octal-escape": "error",
 
     // 不要修改函数参数
+    // @reason 修改函数参数可能导致意外的副作用
     "no-param-reassign": [
       "warn",
       {
         props: true,
         ignorePropertyModificationsFor: [
-          "acc", // for reduce accumulators
-          "e", // for e.returnvalue
-          "ctx", // for Koa routing
-          "draft", // for immer
-          "req", // for Express requests
-          "request", // for Express requests
-          "res", // for Express responses
-          "response", // for Express responses
-          "$scope", // for Angular 1 scopes
+          "acc",
+          "e",
+          "ctx",
+          "draft",
+          "req",
+          "request",
+          "res",
+          "response",
+          "$scope",
         ],
       },
     ],
 
     // 禁止使用 __proto__ 属性
+    // @reason __proto__ 已废弃，应使用 Object.getPrototypeOf/setPrototypeOf
     "no-proto": "error",
 
     // 不要重复声明变量和函数
+    // @reason 重复声明会导致变量覆盖，引发潜在错误
     "no-redeclare": "error",
 
     // 禁止使用某些对象的某些属性
+    // @reason 可用于禁用特定 API 或不安全的属性
     "no-restricted-properties": "off",
 
     // 禁止在 return 语句中赋值
+    // @reason return 语句中的赋值会降低代码可读性
     "no-return-assign": ["error", "always"],
 
     // 禁止不必要的 return await
-    "no-return-await": "off",
+    // @reason return await 会增加额外的 Promise 包装，降低性能
+    "no-return-await": "warn",
 
     // 禁止使用 javascript:url，如 location.href = 'javascript:void(0)';
     // @unessential
@@ -221,7 +232,8 @@ export default {
     "no-throw-literal": "warn",
 
     // 禁用不变的循环条件
-    "no-unmodified-loop-condition": "off",
+    // @reason 不变的循环条件可能导致无限循环
+    "no-unmodified-loop-condition": "warn",
 
     // 禁止出现未使用的表达式
     "no-unused-expressions": [
@@ -263,6 +275,30 @@ export default {
     // 禁止使用 with
     "no-with": "error",
 
+    // ===== ESLint v9.x/v10.x 新增规则 =====
+
+    // 禁止空的静态块
+    // @reason 空的静态块没有意义，可能是代码错误
+    "no-empty-static-block": "warn",
+
+    // 禁止在 Promise executor 中返回值
+    // @reason Promise executor 的返回值会被忽略，可能导致意外行为
+    "no-promise-executor-return": "warn",
+
+    // ===== ESLint v10.x 新增规则 =====
+
+    // 禁止从未赋值的变量
+    // @reason 从未赋值的变量通常是错误，可能导致 undefined 值
+    "no-unassigned-vars": "warn",
+
+    // 禁止无效的赋值
+    // @reason 无效的赋值（如 x = x）没有意义，可能是代码错误
+    "no-useless-assignment": "warn",
+
+    // 保留捕获的错误
+    // @reason 捕获的错误应该被使用或重新抛出，否则可能隐藏异常
+    "preserve-caught-error": "warn",
+
     // Promise 的 reject 需要传入 Error 对象
     "prefer-promise-reject-errors": ["warn", { allowEmptyReject: true }],
 
@@ -286,3 +322,12 @@ export default {
     yoda: "warn",
   },
 };
+
+// ES Module 导出
+export default config;
+
+// CommonJS 导出（向后兼容）
+// 用于兼容 FlatCompat 等需要 CommonJS 格式的工具
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = config;
+}

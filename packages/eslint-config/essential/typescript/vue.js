@@ -1,9 +1,9 @@
-module.exports = {
+export default {
   extends: [
-    './index',
-    '../../rules/vue', // vue 要置于最后，因为里面用了 vue-parser
-  ].map(require.resolve),
+    "./index.js",
+    "../../rules/vue.js", // vue 要置于最后，因为里面用了 vue-parser
+  ],
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: "@typescript-eslint/parser",
   },
 };

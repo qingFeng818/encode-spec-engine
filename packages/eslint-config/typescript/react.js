@@ -1,6 +1,3 @@
-module.exports = {
-  extends: [
-    '../react',
-    '../rules/typescript',
-  ].map(require.resolve),
+export default {
+  extends: ["../react.js", "../rules/typescript.js"],
 };

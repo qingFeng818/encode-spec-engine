@@ -1,45 +1,14 @@
-"use strict";
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRETTIER_IGNORE_PATTERN = exports.PRETTIER_FILE_EXT = exports.MARKDOWN_LINT_IGNORE_PATTERN = exports.MARKDOWN_LINT_FILE_EXT = exports.STYLELINT_IGNORE_PATTERN = exports.STYLELINT_FILE_EXT = exports.ESLINT_IGNORE_PATTERN = exports.ESLINT_FILE_EXT = exports.PROJECT_TYPES = exports.PKG_VERSION = exports.PKG_NAME = exports.UNICODE = void 0;
-var path_1 = __importDefault(require("path"));
-var fs_extra_1 = __importDefault(require("fs-extra"));
-var pkg = JSON.parse(fs_extra_1.default.readFileSync(path_1.default.join(__dirname, '../../package.json'), 'utf8'));
-var UNICODE;
+import path from 'path';
+import fs from 'fs-extra';
+const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf8'));
+export var UNICODE;
 (function (UNICODE) {
     UNICODE["success"] = "\u2714";
     UNICODE["failure"] = "\u2716";
-})(UNICODE = exports.UNICODE || (exports.UNICODE = {}));
-exports.PKG_NAME = pkg.name;
-exports.PKG_VERSION = pkg.version;
-exports.PROJECT_TYPES = [
+})(UNICODE || (UNICODE = {}));
+export const PKG_NAME = pkg.name;
+export const PKG_VERSION = pkg.version;
+export const PROJECT_TYPES = [
     {
         name: '未使用 React、Vue、Node.js 的项目（JavaScript）',
         value: 'index',
@@ -85,8 +54,17 @@ exports.PROJECT_TYPES = [
         value: 'es5',
     },
 ];
-exports.ESLINT_FILE_EXT = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
-exports.ESLINT_IGNORE_PATTERN = [
+export const ESLINT_CONFIG_FORMATS = [
+    {
+        name: '传统格式（.eslintrc.js）- 兼容 ESLint v8.x 及以下版本',
+        value: 'legacy',
+    },
+    {
+        name: 'Flat Config 格式（eslint.config.js）- ESLint v9.x/v10.x 推荐',
+        value: 'flat',
+    },
+];
+export const ESLINT_IGNORE_PATTERN = [
     'node_modules/**',
     'build/**',
     'dist/**',
@@ -97,8 +75,10 @@ exports.ESLINT_IGNORE_PATTERN = [
     '**/*-min.js',
     '**/*.bundle.js',
 ];
-exports.STYLELINT_FILE_EXT = ['.css', '.scss', '.less', '.acss'];
-exports.STYLELINT_IGNORE_PATTERN = [
+export const MARKDOWN_LINT_FILE_EXT = ['.md'];
+export const STYLELINT_FILE_EXT = ['.css', '.scss', '.less', '.acss'];
+export const ESLINT_FILE_EXT = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
+export const STYLELINT_IGNORE_PATTERN = [
     'node_modules/',
     'build/',
     'dist/',
@@ -109,8 +89,7 @@ exports.STYLELINT_IGNORE_PATTERN = [
     '**/*-min.css',
     '**/*.bundle.css',
 ];
-exports.MARKDOWN_LINT_FILE_EXT = ['.md'];
-exports.MARKDOWN_LINT_IGNORE_PATTERN = [
+export const MARKDOWN_LINT_IGNORE_PATTERN = [
     'node_modules/',
     'build/',
     'dist/',
@@ -118,8 +97,12 @@ exports.MARKDOWN_LINT_IGNORE_PATTERN = [
     'es/',
     'lib/',
 ];
-exports.PRETTIER_FILE_EXT = __spreadArray(__spreadArray(__spreadArray([], __read(exports.STYLELINT_FILE_EXT), false), __read(exports.ESLINT_FILE_EXT), false), __read(exports.MARKDOWN_LINT_FILE_EXT), false);
-exports.PRETTIER_IGNORE_PATTERN = [
+export const PRETTIER_FILE_EXT = [
+    ...STYLELINT_FILE_EXT,
+    ...ESLINT_FILE_EXT,
+    ...MARKDOWN_LINT_FILE_EXT,
+];
+export const PRETTIER_IGNORE_PATTERN = [
     'node_modules/**/*',
     'build/**/*',
     'dist/**/*',

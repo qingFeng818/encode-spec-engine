@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var command_exists_1 = require("command-exists");
-var promise = new Promise(function (resolve) {
-    if (!(0, command_exists_1.sync)('pnpm'))
+import { sync as commandExistsSync } from 'command-exists';
+const promise = new Promise((resolve) => {
+    if (!commandExistsSync('pnpm'))
         return resolve('npm');
     resolve('pnpm');
 });
-exports.default = promise;
+export default promise;

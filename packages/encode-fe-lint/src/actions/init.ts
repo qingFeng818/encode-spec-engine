@@ -7,7 +7,11 @@ import npmType from '../utils/npm-type.js';
 import log from '../utils/log.js';
 import conflictResolve from '../utils/conflict-resolve.js';
 import generateTemplate from '../utils/generate-template.js';
-import { PROJECT_TYPES, PKG_NAME } from '../utils/constants.js';
+import {
+  PROJECT_TYPES,
+  ESLINT_CONFIG_FORMATS,
+  PKG_NAME,
+} from '../utils/constants.js';
 import type { InitOptions, PKG } from '../types.js';
 
 let step = 0;
@@ -23,7 +27,20 @@ const chooseEslintType = async (): Promise<string> => {
   return type;
 };
 
-const chooseEnableStylelint = async (defaultValue: boolean): Promise<boolean> => {
+const chooseEslintConfigFormat = async (): Promise<string> => {
+  const { format } = await inquirer.prompt({
+    type: 'list',
+    name: 'format',
+    message: `Step ${++step}. 请选择 ESLint 配置格式：`,
+    choices: ESLINT_CONFIG_FORMATS,
+  });
+
+  return format;
+};
+
+const chooseEnableStylelint = async (
+  defaultValue: boolean,
+): Promise<boolean> => {
   const { enable } = await inquirer.prompt({
     type: 'confirm',
     name: 'enable',
@@ -75,16 +92,37 @@ export default async (options: InitOptions) => {
     config.enableESLint = true;
   }
 
-  if (options.eslintType && PROJECT_TYPES.find((choice) => choice.value === options.eslintType)) {
+  // ESLint 项目类型配置
+  const isValidEslintType =
+    options.eslintType &&
+    PROJECT_TYPES.find((choice) => choice.value === options.eslintType);
+
+  // ESLint 配置格式配置
+  const isValidEslintConfigFormat =
+    options.eslintConfigFormat &&
+    ESLINT_CONFIG_FORMATS.find(
+      (choice) => choice.value === options.eslintConfigFormat,
+    );
+
+  // 如果用户通过命令行指定了所有 ESLint 相关参数，则直接使用；否则进行交互式选择
+  if (isValidEslintType && isValidEslintConfigFormat) {
     config.eslintType = options.eslintType;
+    config.eslintConfigFormat = options.eslintConfigFormat;
   } else {
-    config.eslintType = await chooseEslintType();
+    config.eslintType = isValidEslintType
+      ? options.eslintType
+      : await chooseEslintType();
+    config.eslintConfigFormat = isValidEslintConfigFormat
+      ? options.eslintConfigFormat
+      : await chooseEslintConfigFormat();
   }
 
   if (typeof options.enableStylelint === 'boolean') {
     config.enableStylelint = options.enableStylelint;
   } else {
-    config.enableStylelint = await chooseEnableStylelint(!/node/.test(config.eslintType));
+    config.enableStylelint = await chooseEnableStylelint(
+      !/node/.test(config.eslintType),
+    );
   }
 
   if (typeof options.enableMarkdownlint === 'boolean') {

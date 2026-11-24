@@ -67,6 +67,7 @@ export interface InitOptions {
   enableStylelint?: boolean;
   enableMarkdownlint?: boolean;
   enablePrettier?: boolean;
+  eslintConfigFormat?: string;
   disableNpmInstall?: boolean;
 }
 

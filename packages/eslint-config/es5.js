@@ -1,10 +1,10 @@
 export default {
   extends: [
-    "./rules/base/best-practices",
-    "./rules/base/possible-errors",
-    "./rules/base/style",
-    "./rules/base/variables",
-    "./rules/es5",
-  ].map(require.resolve),
+    "./rules/base/best-practices.js",
+    "./rules/base/possible-errors.js",
+    "./rules/base/style.js",
+    "./rules/base/variables.js",
+    "./rules/es5.js",
+  ],
   root: true,
 };

@@ -1,0 +1,167 @@
+import encodeEslintConfig, {
+typescriptConfig,
+reactConfig,
+vueConfig,
+} from 'encode-eslint-config/flat.js';
+
+<%_ if (enablePrettier) { _%>
+  // Prettier 集成
+  import prettierConfig from 'eslint-config-prettier';
+  <%_ } _%>
+
+    <%_ if (eslintType==='index' ) { _%>
+      // 未使用 React、Vue、Node.js 的项目（JavaScript）
+      <%_ if (enablePrettier) { _%>
+        export default [
+        ...encodeEslintConfig,
+        prettierConfig,
+        ];
+        <%_ } else { _%>
+          export default encodeEslintConfig;
+          <%_ } _%>
+            <%_ } else if (eslintType==='typescript' ) { _%>
+              // 未使用 React、Vue、Node.js 的项目（TypeScript）
+              <%_ if (enablePrettier) { _%>
+                export default [
+                ...encodeEslintConfig,
+                typescriptConfig,
+                prettierConfig,
+                ];
+                <%_ } else { _%>
+                  export default [
+                  ...encodeEslintConfig,
+                  typescriptConfig,
+                  ];
+                  <%_ } _%>
+                    <%_ } else if (eslintType==='react' ) { _%>
+                      // React 项目（JavaScript）
+                      <%_ if (enablePrettier) { _%>
+                        export default [
+                        ...encodeEslintConfig,
+                        reactConfig,
+                        prettierConfig,
+                        ];
+                        <%_ } else { _%>
+                          export default [
+                          ...encodeEslintConfig,
+                          reactConfig,
+                          ];
+                          <%_ } _%>
+                            <%_ } else if (eslintType==='typescript/react' ) { _%>
+                              // React 项目（TypeScript）
+                              <%_ if (enablePrettier) { _%>
+                                export default [
+                                ...encodeEslintConfig,
+                                typescriptConfig,
+                                reactConfig,
+                                prettierConfig,
+                                ];
+                                <%_ } else { _%>
+                                  export default [
+                                  ...encodeEslintConfig,
+                                  typescriptConfig,
+                                  reactConfig,
+                                  ];
+                                  <%_ } _%>
+                                    <%_ } else if (eslintType==='rax' ) { _%>
+                                      // Rax 项目（JavaScript）
+                                      // Rax 项目使用 React 配置
+                                      <%_ if (enablePrettier) { _%>
+                                        export default [
+                                        ...encodeEslintConfig,
+                                        reactConfig,
+                                        prettierConfig,
+                                        ];
+                                        <%_ } else { _%>
+                                          export default [
+                                          ...encodeEslintConfig,
+                                          reactConfig,
+                                          ];
+                                          <%_ } _%>
+                                            <%_ } else if (eslintType==='typescript/rax' ) { _%>
+                                              // Rax 项目（TypeScript）
+                                              // Rax 项目使用 React 配置
+                                              <%_ if (enablePrettier) { _%>
+                                                export default [
+                                                ...encodeEslintConfig,
+                                                typescriptConfig,
+                                                reactConfig,
+                                                prettierConfig,
+                                                ];
+                                                <%_ } else { _%>
+                                                  export default [
+                                                  ...encodeEslintConfig,
+                                                  typescriptConfig,
+                                                  reactConfig,
+                                                  ];
+                                                  <%_ } _%>
+                                                    <%_ } else if (eslintType==='vue' ) { _%>
+                                                      // Vue 项目（JavaScript）
+                                                      <%_ if (enablePrettier) { _%>
+                                                        export default [
+                                                        ...encodeEslintConfig,
+                                                        vueConfig,
+                                                        prettierConfig,
+                                                        ];
+                                                        <%_ } else { _%>
+                                                          export default [
+                                                          ...encodeEslintConfig,
+                                                          vueConfig,
+                                                          ];
+                                                          <%_ } _%>
+                                                            <%_ } else if (eslintType==='typescript/vue' ) { _%>
+                                                              // Vue 项目（TypeScript）
+                                                              <%_ if (enablePrettier) { _%>
+                                                                export default [
+                                                                ...encodeEslintConfig,
+                                                                typescriptConfig,
+                                                                vueConfig,
+                                                                prettierConfig,
+                                                                ];
+                                                                <%_ } else { _%>
+                                                                  export default [
+                                                                  ...encodeEslintConfig,
+                                                                  typescriptConfig,
+                                                                  vueConfig,
+                                                                  ];
+                                                                  <%_ } _%>
+                                                                    <%_ } else if (eslintType==='node' ) { _%>
+                                                                      // Node.js 项目（JavaScript）
+                                                                      // Node.js 项目使用基础配置
+                                                                      <%_ if (enablePrettier) { _%>
+                                                                        export default [
+                                                                        ...encodeEslintConfig,
+                                                                        prettierConfig,
+                                                                        ];
+                                                                        <%_ } else { _%>
+                                                                          export default encodeEslintConfig;
+                                                                          <%_ } _%>
+                                                                            <%_ } else if
+                                                                              (eslintType==='typescript/node' ) { _%>
+                                                                              // Node.js 项目（TypeScript）
+                                                                              <%_ if (enablePrettier) { _%>
+                                                                                export default [
+                                                                                ...encodeEslintConfig,
+                                                                                typescriptConfig,
+                                                                                prettierConfig,
+                                                                                ];
+                                                                                <%_ } else { _%>
+                                                                                  export default [
+                                                                                  ...encodeEslintConfig,
+                                                                                  typescriptConfig,
+                                                                                  ];
+                                                                                  <%_ } _%>
+                                                                                    <%_ } else if (eslintType==='es5' )
+                                                                                      { _%>
+                                                                                      // 使用 ES5 及之前版本 JavaScript 的老项目
+                                                                                      // ES5 项目使用基础配置
+                                                                                      <%_ if (enablePrettier) { _%>
+                                                                                        export default [
+                                                                                        ...encodeEslintConfig,
+                                                                                        prettierConfig,
+                                                                                        ];
+                                                                                        <%_ } else { _%>
+                                                                                          export default
+                                                                                          encodeEslintConfig;
+                                                                                          <%_ } _%>
+                                                                                            <%_ } _%>

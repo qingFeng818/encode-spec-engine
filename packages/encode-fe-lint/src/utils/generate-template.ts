@@ -31,16 +31,38 @@ const mergeVSCodeConfig = (filepath: string, content: string) => {
 
 export default (cwd: string, data: Record<string, any>, vscode?: boolean) => {
   const templatePath = path.resolve(__dirname, '../config');
-  const templates = glob.sync(`${vscode ? '_vscode' : '**'}/*.ejs`, { cwd: templatePath });
+  const templates = glob.sync(`${vscode ? '_vscode' : '**'}/*.ejs`, {
+    cwd: templatePath,
+  });
+
+  // 根据 ESLint 配置格式决定生成哪个配置文件
+  const eslintConfigFormat = data.eslintConfigFormat || 'legacy';
+
   for (const name of templates) {
-    const filepath = path.resolve(cwd, name.replace(/\.ejs$/, '').replace(/^_/, '.'));
-    let content = ejs.render(fs.readFileSync(path.resolve(templatePath, name), 'utf8'), {
-      eslintIgnores: ESLINT_IGNORE_PATTERN,
-      stylelintExt: STYLELINT_FILE_EXT,
-      stylelintIgnores: STYLELINT_IGNORE_PATTERN,
-      markdownLintIgnores: MARKDOWN_LINT_IGNORE_PATTERN,
-      ...data,
-    });
+    // 根据配置格式过滤模板文件
+    if (name.includes('eslintrc') && eslintConfigFormat === 'flat') {
+      // 如果是 flat 格式，跳过传统的 eslintrc 模板
+      continue;
+    }
+    if (name.includes('flat.config') && eslintConfigFormat === 'legacy') {
+      // 如果是 legacy 格式，跳过 flat config 模板
+      continue;
+    }
+
+    const filepath = path.resolve(
+      cwd,
+      name.replace(/\.ejs$/, '').replace(/^_/, '.'),
+    );
+    let content = ejs.render(
+      fs.readFileSync(path.resolve(templatePath, name), 'utf8'),
+      {
+        eslintIgnores: ESLINT_IGNORE_PATTERN,
+        stylelintExt: STYLELINT_FILE_EXT,
+        stylelintIgnores: STYLELINT_IGNORE_PATTERN,
+        markdownLintIgnores: MARKDOWN_LINT_IGNORE_PATTERN,
+        ...data,
+      },
+    );
     if (/^_vscode/.test(name)) {
       content = mergeVSCodeConfig(filepath, content);
     }

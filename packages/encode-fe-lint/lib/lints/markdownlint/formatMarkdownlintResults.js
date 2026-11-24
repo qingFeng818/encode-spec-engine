@@ -1,15 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.formatMarkdownlintResults = void 0;
-function formatMarkdownlintResults(results, quiet) {
-    var parsedResults = [];
-    var _loop_1 = function (file) {
+export function formatMarkdownlintResults(results, quiet) {
+    const parsedResults = [];
+    for (const file in results) {
         if (!Object.prototype.hasOwnProperty.call(results, file) || quiet)
-            return "continue";
-        var warningCount = 0;
-        var fixableWarningCount = 0;
-        var messages = results[file].map(function (_a) {
-            var lineNumber = _a.lineNumber, ruleNames = _a.ruleNames, ruleDescription = _a.ruleDescription, ruleInformation = _a.ruleInformation, errorRange = _a.errorRange, fixInfo = _a.fixInfo;
+            continue;
+        let warningCount = 0;
+        let fixableWarningCount = 0;
+        const messages = results[file].map(({ lineNumber, ruleNames, ruleDescription, ruleInformation, errorRange, fixInfo }) => {
             if (fixInfo)
                 fixableWarningCount++;
             warningCount++;
@@ -24,16 +20,12 @@ function formatMarkdownlintResults(results, quiet) {
         });
         parsedResults.push({
             filePath: file,
-            messages: messages,
+            messages,
             errorCount: 0,
-            warningCount: warningCount,
+            warningCount,
             fixableErrorCount: 0,
-            fixableWarningCount: fixableWarningCount,
+            fixableWarningCount,
         });
-    };
-    for (var file in results) {
-        _loop_1(file);
     }
     return parsedResults;
 }
-exports.formatMarkdownlintResults = formatMarkdownlintResults;

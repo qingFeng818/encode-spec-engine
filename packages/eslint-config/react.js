@@ -1,11 +1,8 @@
-module.exports = {
-  extends: [
-    './index',
-    './rules/react',
-  ].map(require.resolve),
+export default {
+  extends: ["./index.js", "./rules/react.js"],
   parserOptions: {
     babelOptions: {
-      presets: ['@babel/preset-react'],
+      presets: ["@babel/preset-react"],
     },
   },
 };

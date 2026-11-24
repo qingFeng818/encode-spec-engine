@@ -1,0 +1,33 @@
+import {
+defaultConfigs,
+typescriptConfigs,
+reactConfigs,
+vueConfigs,
+typescriptReactConfigs,
+typescriptVueConfigs,
+} from 'encode-eslint-config/flat.js';
+
+<%_ if (enablePrettier) { _%>
+  import prettierConfig from 'eslint-config-prettier';
+  <%_ } _%>
+
+    <%_ const configMap={ 'index' : 'defaultConfigs' , 'typescript' : 'typescriptConfigs' , 'react' : 'reactConfigs'
+      , 'typescript/react' : 'typescriptReactConfigs' , 'rax' : 'reactConfigs' , 'typescript/rax'
+      : 'typescriptReactConfigs' , 'vue' : 'vueConfigs' , 'typescript/vue' : 'typescriptVueConfigs' , 'node'
+      : 'defaultConfigs' , 'typescript/node' : 'typescriptConfigs' , 'es5' : 'defaultConfigs' , }; const
+      selectedConfig=configMap[eslintType] || 'defaultConfigs' ; _%>
+
+      // <%= eslintType==='index' ? '未使用 React、Vue、Node.js 的项目（JavaScript）' : eslintType==='typescript'
+        ? '未使用 React、Vue、Node.js 的项目（TypeScript）' : eslintType==='react' ? 'React 项目（JavaScript）' :
+        eslintType==='typescript/react' ? 'React 项目（TypeScript）' : eslintType==='rax' ? 'Rax 项目（JavaScript）' :
+        eslintType==='typescript/rax' ? 'Rax 项目（TypeScript）' : eslintType==='vue' ? 'Vue 项目（JavaScript）' :
+        eslintType==='typescript/vue' ? 'Vue 项目（TypeScript）' : eslintType==='node' ? 'Node.js 项目（JavaScript）' :
+        eslintType==='typescript/node' ? 'Node.js 项目（TypeScript）' : '使用 ES5 及之前版本 JavaScript 的老项目' %>
+        <%_ if (enablePrettier) { _%>
+          export default [
+          ...<%= selectedConfig %>,
+            prettierConfig,
+            ];
+            <%_ } else { _%>
+              export default <%= selectedConfig %>;
+                <%_ } _%>

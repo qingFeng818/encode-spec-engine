@@ -19,13 +19,17 @@ export default {
     "arrow-spacing": ["error", { before: true, after: true }],
 
     // 子类的 constructor 中必须使用 super，非子类的 constructor 中不能使用 super
+    // @reason 确保 ES6 类继承的正确性
     "constructor-super": "error",
 
-    // generator 函数的 * 号前面无空格，后面有一个空格
-    // @unessential
-    "generator-star-spacing": ["error", { before: false, after: true }],
+    // 禁止构造函数返回值
+    // @reason 构造函数返回值会导致意外的行为
+    "no-constructor-return": "error",
+
+    // ===== 对象和属性规则 =====
 
     // 禁止对类声明变量重新赋值
+    // @reason 类声明是常量，不应被重新赋值
     "no-class-assign": "error",
 
     // 避免箭头函数与比较操作符产生混淆
@@ -164,5 +168,11 @@ export default {
     // yield* 表达式的 * 号前面无空格，后面有一个空格
     // @unessential
     "yield-star-spacing": ["error", "after"],
+
+    // ===== ESLint v10.x 新增规则 =====
+
+    // 禁止精度丢失
+    // @reason 大数字可能导致精度丢失，ES6+ BigInt 可避免此问题
+    "no-loss-of-precision": "error",
   },
 };

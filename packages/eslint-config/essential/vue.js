@@ -1,8 +1,8 @@
-module.exports = {
+export default {
   extends: [
-    '../vue',
-    './rules/set-style-to-warn',
-    './rules/blacklist',
-    './rules/es6-blacklist',
-  ].map(require.resolve),
+    "../vue.js",
+    "./rules/set-style-to-warn.js",
+    "./rules/blacklist.js",
+    "./rules/es6-blacklist.js",
+  ],
 };

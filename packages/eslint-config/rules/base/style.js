@@ -355,7 +355,7 @@ export default {
     "operator-assignment": ["warn", "always"],
 
     // 强制操作符使用一致的换行符
-    "operator-linebreak": "off",
+    // @note 已移至文件末尾的 ESLint v9.x/v10.x 新增规则部分
 
     // 块的开始和结束不能是空行
     "padded-blocks": [
@@ -456,5 +456,19 @@ export default {
 
     // 要求正则表达式被括号括起来
     "wrap-regex": "off",
+
+    // ===== ESLint v9.x/v10.x 新增规则 =====
+
+    // 禁止行尾逗号在同一行
+    // @reason 行尾逗号应放在行尾，提高可读性
+    "comma-linebreak": ["error", "always"],
+
+    // 强制操作符换行风格：操作符放在行尾
+    // @reason 操作符放在行尾更易读，与 prettier 对齐
+    "operator-linebreak": [
+      "warn",
+      "after",
+      { overrides: { "?": "before", ":": "before" } },
+    ],
   },
 };

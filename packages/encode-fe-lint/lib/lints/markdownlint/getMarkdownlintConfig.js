@@ -1,31 +1,21 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMarkdownlintConfig = void 0;
-var path_1 = __importDefault(require("path"));
-var glob_1 = __importDefault(require("glob"));
-var markdownlint_1 = __importDefault(require("markdownlint"));
-var markdownlint_config_encode_1 = __importDefault(require("markdownlint-config-encode"));
-function getMarkdownlintConfig(opts, pkg, config) {
-    var cwd = opts.cwd;
-    var lintConfig = {
+import path from 'path';
+import { glob } from 'glob';
+import { readConfig } from 'markdownlint/sync';
+export function getMarkdownlintConfig(opts, pkg, config) {
+    const { cwd } = opts;
+    const lintConfig = {
         fix: Boolean(opts.fix),
-        resultVersion: 3,
     };
     if (config.markdownlintOptions) {
         Object.assign(lintConfig, config.markdownlintOptions);
     }
     else {
-        var lintConfigFiles = glob_1.default.sync('.markdownlint(.@(yaml|yml|json))', { cwd: cwd });
-        if (lintConfigFiles.length === 0) {
-            lintConfig.config = markdownlint_config_encode_1.default;
-        }
-        else {
-            lintConfig.config = markdownlint_1.default.readConfigSync(path_1.default.resolve(cwd, lintConfigFiles[0]));
+        const lintConfigFiles = glob.sync('.{markdownlintrc,markdownlint}{,.@(json,yaml,yml)}', {
+            cwd,
+        });
+        if (lintConfigFiles.length > 0) {
+            lintConfig.config = readConfig(path.resolve(cwd, lintConfigFiles[0]));
         }
     }
     return lintConfig;
 }
-exports.getMarkdownlintConfig = getMarkdownlintConfig;

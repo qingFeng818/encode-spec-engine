@@ -1,68 +1,51 @@
-"use strict";
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getESLintConfig = void 0;
-var fs_extra_1 = __importDefault(require("fs-extra"));
-var glob_1 = __importDefault(require("glob"));
-var path_1 = __importDefault(require("path"));
-var constants_1 = require("../../utils/constants");
-var getESLintConfigType_1 = require("./getESLintConfigType");
-function getESLintConfig(opts, pkg, config) {
-    var cwd = opts.cwd, fix = opts.fix, ignore = opts.ignore;
-    var lintConfig = {
-        cwd: cwd,
-        fix: fix,
-        ignore: ignore,
-        extensions: constants_1.ESLINT_FILE_EXT,
+import fs from 'fs-extra';
+import { glob } from 'glob';
+import path from 'path';
+import prettier from 'prettier';
+export function getESLintConfig(opts, pkg, config) {
+    const { cwd, fix, ignore, cache } = opts;
+    const lintConfig = {
+        cwd,
+        fix,
+        ignore,
+        cache,
         errorOnUnmatchedPattern: false,
     };
     if (config.eslintOptions) {
         Object.assign(lintConfig, config.eslintOptions);
     }
     else {
-        var lintConfigFiles = glob_1.default.sync('.eslintrc?(.@(js|cjs|yaml|yml|json))', { cwd: cwd });
-        console.log(lintConfigFiles, 'lintConfigFiles', lintConfigFiles.length);
+        const lintConfigFiles = glob.sync('.eslintrc?(.@(js|cjs|yaml|yml|json))', { cwd });
+        const getIgnorePatterns = () => {
+            const ignoreFilePath = path.resolve(__dirname, '../config/_eslintignore.ejs');
+            const fileContent = fs.readFileSync(ignoreFilePath, 'utf8');
+            const ignorePatterns = fileContent
+                .split(/\r?\n/)
+                .map((line) => line.trim())
+                .filter((line) => line && !line.startsWith('#'));
+            return ignorePatterns;
+        };
         if (lintConfigFiles.length === 0 && !pkg.eslintConfig) {
-            lintConfig.resolvePluginsRelativeTo = path_1.default.resolve(__dirname, '../../');
-            lintConfig.useEslintrc = false;
-            lintConfig.baseConfig = {
-                extends: __spreadArray([
-                    (0, getESLintConfigType_1.getESLintConfigType)(cwd, pkg)
-                ], __read((config.enablePrettier ? ['prettier'] : [])), false),
-            };
+            lintConfig.overrideConfig = [
+                {
+                    files: ['**/*.{js,jsx,ts,tsx}'],
+                    languageOptions: {
+                        ecmaVersion: 'latest',
+                        sourceType: 'module',
+                        globals: {
+                            window: 'readonly',
+                            document: 'readonly',
+                        },
+                    },
+                    ignores: getIgnorePatterns(),
+                    ...(config.enablePrettier ? prettier : {}),
+                },
+            ];
         }
-        var lintIgnoreFile = path_1.default.resolve(cwd, '.eslintignore');
-        if (!fs_extra_1.default.existsSync(lintIgnoreFile) && !pkg.eslintIgnore) {
-            lintConfig.ignorePath = path_1.default.resolve(__dirname, '../config/_eslintignore.ejs');
+        const lintIgnoreFile = path.resolve(cwd, '.eslintignore');
+        if (!fs.existsSync(lintIgnoreFile) && !pkg.eslintIgnore) {
+            lintConfig.ignorePatterns = getIgnorePatterns();
         }
     }
     return lintConfig;
 }
-exports.getESLintConfig = getESLintConfig;

@@ -115,12 +115,20 @@ export default {
     "require-atomic-updates": "warn",
 
     // 使用 Number.isNaN()，而不是直接与 NaN 进行比较
+    // @reason Number.isNaN() 更准确
     "use-isnan": "error",
-
-    // 使用有效的 JSDoc 注释
-    "valid-jsdoc": "off",
 
     // 同 typeof 表达式结果进行比较的值必须是有效的字符串，即 'undefined', 'object', 'boolean', 'number', 'string', 'function' 或 'symbol'
     "valid-typeof": ["error", { requireStringLiterals: true }],
+
+    // ===== ESLint v10.x 新增规则 =====
+
+    // 禁止重复的 else-if 条件
+    // @reason 重复的条件可能是逻辑错误，应被检测为错误
+    "no-dupe-else-if": "error",
+
+    // 禁止常量二元表达式
+    // @reason 常量表达式可能是代码错误，如 1 > 2 这样的条件永远为 false
+    "no-constant-binary-expression": "warn",
   },
 };

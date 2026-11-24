@@ -1,5 +1,3 @@
-module.exports = {
-  extends: [
-    './rules/jsx-a11y',
-  ].map(require.resolve),
+export default {
+  extends: ["./rules/jsx-a11y.js"],
 };
